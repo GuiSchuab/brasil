@@ -91,7 +91,6 @@ class CPF
         }
         $d2 = 11 - ($soma % 11);
         if ($d2 >= 10) $d2 = 0;
-
         return $d1 == $cpf[9] && $d2 == $cpf[10];
     }
 }
