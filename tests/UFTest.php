@@ -35,9 +35,7 @@ class UFTest extends PHPUnit_Framework_TestCase
     {
         $i = 0;
         foreach (UF::$REGIOES as $k => $v) {
-            foreach (UF::$REGIOES[$k] as $val) {
-                $i++;
-            }
+            $i += count(UF::$REGIOES[$k]);
         }
         $this->assertEquals(27, $i);
     }
@@ -49,6 +47,38 @@ class UFTest extends PHPUnit_Framework_TestCase
     {
         foreach (UF::$SIGLAS as $k => $v) {
             $this->assertEquals($k, $v);
+        }
+    }
+
+    /**
+     * Verifica se as siglas estão em ordem alfabética
+     */
+    public function testOrdemAlfabeticaSigla()
+    {
+        $ordenado = UF::$SIGLAS;
+        ksort($ordenado);
+        $this->assertSame($ordenado, UF::$SIGLAS);
+    }
+
+    /**
+     * Verifica se as chaves dos nomes estão em ordem alfabética
+     */
+    public function testOrdemAlfabeticaNome()
+    {
+        $ordenado = UF::$NOMES;
+        ksort($ordenado);
+        $this->assertSame($ordenado, UF::$NOMES);
+    }
+
+    /**
+     * Verifica se as chaves estão em ordem alfabética dentro de cada regiao
+     */
+    public function testOrdemAlfabeticaRegiao()
+    {
+        foreach (UF::$REGIOES as $k => $v) {
+            $ordenado = UF::$REGIOES[$k];
+            ksort($ordenado);
+            $this->assertSame($ordenado, UF::$REGIOES[$k]);
         }
     }
 }
