@@ -28,16 +28,16 @@ class CNPJ
      */
     public static function formatar($cnpj)
     {
-        $cpf = static::digitos($cnpj);
+        $cnpj = static::digitos($cnpj);
         if (strlen($cnpj) != 14) {
             return "";
         }
 
         $partes[] = substr($cnpj, 0, 2);
-        $partes[] = substr($cnpj, 3, 3);
-        $partes[] = substr($cnpj, 6, 3);
-        $filiais  = substr($cnpj, 9, 4);
-        $verificador = substr($cnpj, 13);
+        $partes[] = substr($cnpj, 2, 3);
+        $partes[] = substr($cnpj, 5, 3);
+        $filiais  = substr($cnpj, 8, 4);
+        $verificador = substr($cnpj, 12);
 
         return implode(".", $partes) . '/' . $filiais . '-' . $verificador;
     }
