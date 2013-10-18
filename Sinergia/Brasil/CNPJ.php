@@ -100,7 +100,9 @@ class CNPJ
             $soma += $multiplicadores[$i] * $cnpj[$i];
         }
         $d2 = 11 - ($soma % 11);
-        if ($d2 >= 10) $d2 = 0;
+        if ($d2 >= 10) {
+            $d2 = 0;
+        }
 
         return $d1 == $cnpj[12] && $d2 == $cnpj[13];
     }
