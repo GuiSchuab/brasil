@@ -31,4 +31,22 @@ class CNPJTest extends PHPUnit_Framework_TestCase
         $cnpjFormatado = CNPJ::formatar("921223130");
         $this->assertEquals("", $cnpjFormatado);
     }
+
+    /**
+     * Retorna os dígitos verificadores do CNPJ informado.
+     */
+    public function testDigitosVerificadores()
+    {
+        $verificadores = CNPJ::verificador("92.122.313/0001-30");
+        $this->assertEquals("30", $verificadores);
+
+        $verificadores = CNPJ::verificador("92.122.313/0001-0");
+        $this->assertEquals("", $verificadores);
+
+        $verificadores = CNPJ::verificador("92122313000130");
+        $this->assertEquals("30", $verificadores);
+
+        $verificadores = CNPJ::verificador("92122313000130444444444");
+        $this->assertEquals("30", $verificadores);
+    }
 }
