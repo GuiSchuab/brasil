@@ -72,5 +72,11 @@ class CPFTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(CPF::validar("656.765.370-190"));
         $this->assertFalse(CPF::validar("679.057.601-04"));
         $this->assertFalse(CPF::validar("828.583.3A7-06"));
+        for ($i = 0; $i < 10; $i++) {
+            $this->assertFalse(CPF::validar("$i$i$i.$i$i$i.$i$i$i-$i$i"));
+        }
+        for ($i = 0; $i < 100; $i++) {
+            $this->assertTrue(CPF::validar(CPF::gerar()));
+        }
     }
 }
