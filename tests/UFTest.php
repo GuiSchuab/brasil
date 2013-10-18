@@ -41,4 +41,14 @@ class UFTest extends PHPUnit_Framework_TestCase
         }
         $this->assertEquals(27, $i);
     }
+
+    /**
+     * Testa se os valores das siglas estão corretos, cada qual com sua chave
+     */
+    public function testChaveValor()
+    {
+        foreach (UF::$SIGLAS as $k => $v) {
+            $this->assertEquals($k, $v);
+        }
+    }
 }
