@@ -44,4 +44,22 @@ class CPFTest extends PHPUnit_Framework_TestCase
         $cpfFormatado = CPF::formatar("14A.536.839-91");
         $this->assertEquals("", $cpfFormatado);
     }
+
+    /**
+     * Retorna os dígitos verificadores do CPF informado.
+     */
+    public function testDigitosVerificadores()
+    {
+        $verificadores = CPF::verificador("123.456.789-01");
+        $this->assertEquals("01", $verificadores);
+
+        $verificadores = CPF::verificador("123.456.789-A1");
+        $this->assertEquals("", $verificadores);
+
+        $verificadores = CPF::verificador("1232425553434567891");
+        $this->assertEquals("34", $verificadores);
+
+        $verificadores = CPF::verificador("TESTE123");
+        $this->assertEquals("", $verificadores);
+    }
 }
