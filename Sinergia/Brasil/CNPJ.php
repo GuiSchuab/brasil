@@ -54,4 +54,15 @@ class CNPJ
 
         return substr($cnpj, -2);
     }
+
+    /**
+     * Verifica se o CNPJ está no formato: 00.000.000/0000-00
+     *
+     * @param $cnpj
+     * @return bool
+     */
+    public static function validarFormato($cnpj)
+    {
+        return preg_match('!\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}!', $cnpj) === 1;
+    }
 }
