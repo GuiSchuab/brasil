@@ -66,5 +66,9 @@ class CNPJTest extends PHPUnit_Framework_TestCase
     {
         $this->assertTrue(CNPJ::validar("92.122.313/0001-30"));
         $this->assertFalse(CNPJ::validar("92.122.313/0001-31"));
+        $this->assertTrue(CNPJ::validar("00.000.000/0001-91"));
+        for ($i = 0; $i < 10; $i++) {
+            $this->assertFalse(CNPJ::validar("$i$i.$i$i$i.$i$i$i/$i$i$i$i-$i$i"));
+        }
     }
 }
