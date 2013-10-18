@@ -62,4 +62,15 @@ class CPFTest extends PHPUnit_Framework_TestCase
         $verificadores = CPF::verificador("TESTE123");
         $this->assertEquals("", $verificadores);
     }
+
+    /**
+     * Verifica se o CPF está válido.
+     */
+    public function testValidacao()
+    {
+        $this->assertTrue(CPF::validar("656.765.370-19"));
+        $this->assertTrue(CPF::validar("656.765.370-190"));
+        $this->assertFalse(CPF::validar("679.057.601-04"));
+        $this->assertFalse(CPF::validar("828.583.3A7-06"));
+    }
 }
