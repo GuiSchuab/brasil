@@ -70,5 +70,8 @@ class CNPJTest extends PHPUnit_Framework_TestCase
         for ($i = 0; $i < 10; $i++) {
             $this->assertFalse(CNPJ::validar("$i$i.$i$i$i.$i$i$i/$i$i$i$i-$i$i"));
         }
+        for ($i = 0; $i < 100; $i++) {
+            $this->assertTrue(CNPJ::validar(CNPJ::gerar()));
+        }
     }
 }
