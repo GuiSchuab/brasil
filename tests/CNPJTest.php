@@ -58,4 +58,13 @@ class CNPJTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(CNPJ::validarFormato("92.122.313/0001-30"));
         $this->assertFalse(CNPJ::validarFormato("92.122.313/001-30"));
     }
+
+    /**
+     * Verifica se o CNPJ é válido.
+     */
+    public function testValidacao()
+    {
+        $this->assertTrue(CNPJ::validar("92.122.313/0001-30"));
+        $this->assertFalse(CNPJ::validar("92.122.313/0001-31"));
+    }
 }
