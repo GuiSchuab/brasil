@@ -62,8 +62,8 @@ class UF
         // 3
         "SUL" => array (
             "PR" => "Paraná",
-            "SC" => "Santa Catarina",
-            "RS" => "Rio Grande do Sul"
+            "RS" => "Rio Grande do Sul",
+            "SC" => "Santa Catarina"
         ),
         // 4
         "SUDESTE" => array (
