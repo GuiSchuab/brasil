@@ -41,4 +41,17 @@ class CNPJ
 
         return implode(".", $partes) . '/' . $filiais . '-' . $verificador;
     }
+
+    /**
+     * Retorna os dígitos verificadores (2 últimos dígitos)
+     *
+     * @param $cnpj
+     * @return string
+     */
+    public static function verificador($cnpj)
+    {
+        $cnpj = static::formatar($cnpj);
+
+        return substr($cnpj, -2);
+    }
 }
