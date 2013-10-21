@@ -4,11 +4,7 @@ namespace Sinergia\Brasil;
 
 /**
  * Class Mes
- * @package Sinergia\Brasil
-
- * dias da semana
- * dias da semana abreviado
- *
+ * @package Sinergia\Brasil *
  */
 
 class Mes
@@ -37,17 +33,17 @@ class Mes
      * 12 meses com a sigla
      */
     public static $SIGLAS = array (
-        '01'=>'JAN',
-        '02'=>'FEV',
-        '03'=>'MAR',
-        '04'=>'ABR',
-        '05'=>'MAI',
-        '06'=>'JUN',
-        '07'=>'JUL',
-        '08'=>'AGO',
-        '09'=>'SET',
-        '10'=>'OUT',
-        '11'=>'NOV',
-        '12'=>'DEZ'
+        '01'=>'jan',
+        '02'=>'fev',
+        '03'=>'mar',
+        '04'=>'abr',
+        '05'=>'mai',
+        '06'=>'jun',
+        '07'=>'jul',
+        '08'=>'ago',
+        '09'=>'set',
+        '10'=>'out',
+        '11'=>'nov',
+        '12'=>'dez'
     );
 }
