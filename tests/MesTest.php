@@ -29,4 +29,18 @@ class MesTest extends PHPUnit_Framework_TestCase
             $this->assertEquals(Mes::$SIGLAS[$k], substr($v, 0, 3));
         }
     }
+
+    /**
+     * Verifica se os meses estão em ordem crescente
+     */
+    public function testOrdemCrescente()
+    {
+        $ordenado = Mes::$SIGLAS;
+        ksort($ordenado);
+        $this->assertSame($ordenado, Mes::$SIGLAS);
+
+        $ordenado = Mes::$NOMES;
+        ksort($ordenado);
+        $this->assertSame($ordenado, Mes::$NOMES);
+    }
 }
