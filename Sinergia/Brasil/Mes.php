@@ -14,18 +14,18 @@ class Mes
      * 12 meses com o nome
      */
     public static $NOMES = array (
-        '01'=>'Janeiro',
-        '02'=>'Fevereiro',
-        '03'=>'Março',
-        '04'=>'Abril',
-        '05'=>'Maio',
-        '06'=>'Junho',
-        '07'=>'Julho',
-        '08'=>'Agosto',
-        '09'=>'Setembro',
-        '10'=>'Outubro',
-        '11'=>'Novembro',
-        '12'=>'Dezembro'
+        '01'=>'janeiro',
+        '02'=>'fevereiro',
+        '03'=>'março',
+        '04'=>'abril',
+        '05'=>'maio',
+        '06'=>'junho',
+        '07'=>'julho',
+        '08'=>'agosto',
+        '09'=>'setembro',
+        '10'=>'outubro',
+        '11'=>'novembro',
+        '12'=>'dezembro'
     );
 
     /**
