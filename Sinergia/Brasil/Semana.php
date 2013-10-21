@@ -13,11 +13,11 @@ class Semana
      * Nomes dos 7 dias da semana
      */
     public static $NOMES = array (
-        '01' => 'segunda-feira',
-        '02' => 'terça-feira',
-        '03' => 'quarta-feira',
-        '04' => 'quinta-feira',
-        '05' => 'sexta-feira',
+        '01' => 'segunda',
+        '02' => 'terça',
+        '03' => 'quarta',
+        '04' => 'quinta',
+        '05' => 'sexta',
         '06' => 'sábado',
         '07' => 'domingo'
     );
@@ -27,12 +27,12 @@ class Semana
      * Siglas dos 7 dias da semana
      */
     public static $SIGLAS = array (
-        '01' => 'SEG',
-        '02' => 'TER',
-        '03' => 'QUA',
-        '04' => 'QUI',
-        '05' => 'SEX',
-        '06' => 'SAB',
-        '07' => 'DOM'
+        '01' => 'seg',
+        '02' => 'ter',
+        '03' => 'qua',
+        '04' => 'qui',
+        '05' => 'sex',
+        '06' => 'sab',
+        '07' => 'dom'
     );
 }
