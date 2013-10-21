@@ -38,6 +38,7 @@ class SemanaTest extends PHPUnit_Framework_TestCase
     protected static function removeAcento($str)
     {
         $str = utf8_decode($str);
+
         return strtr($str, utf8_decode('áéíóúãõâêÁÉÍÓÚÃÕÂÊ'), 'aeiouazaeAEIOUAZAE');
     }
 
