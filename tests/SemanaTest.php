@@ -40,4 +40,18 @@ class SemanaTest extends PHPUnit_Framework_TestCase
         $str = utf8_decode($str);
         return strtr($str, utf8_decode('áéíóúãõâêÁÉÍÓÚÃÕÂÊ'), 'aeiouazaeAEIOUAZAE');
     }
+
+    /**
+     * Verifica se os dias da semana estão em ordem crescente
+     */
+    public function testOrdemCrescente()
+    {
+        $ordenado = Semana::$SIGLAS;
+        ksort($ordenado);
+        $this->assertSame($ordenado, Semana::$SIGLAS);
+
+        $ordenado = Semana::$NOMES;
+        ksort($ordenado);
+        $this->assertSame($ordenado, Semana::$NOMES);
+    }
 }
