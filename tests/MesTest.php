@@ -11,4 +11,14 @@ class MesTest extends PHPUnit_Framework_TestCase
     {
         $this->assertCount(12, Mes::$SIGLAS);
     }
+
+    /**
+     * Testa se as siglas correspondem com as iniciais dos nomes
+     */
+    public function testNomeSigla()
+    {
+        foreach (Mes::$NOMES as $k => $v) {
+            $this->assertEquals(Mes::$SIGLAS[$k], substr($v, 0, 3));
+        }
+    }
 }
