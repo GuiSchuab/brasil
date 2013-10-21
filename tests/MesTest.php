@@ -13,6 +13,14 @@ class MesTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Testa se o array tem realmente 12 posições;
+     */
+    public function testCountNomes()
+    {
+        $this->assertCount(12, Mes::$NOMES);
+    }
+
+    /**
      * Testa se as siglas correspondem com as iniciais dos nomes
      */
     public function testNomeSigla()
