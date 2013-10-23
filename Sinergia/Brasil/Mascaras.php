@@ -26,4 +26,20 @@ class Mascaras
     {
         return CPF::formatar($cpf);
     }
+
+    /**
+     * Retorna CPF ou CNPJ formatado
+     * @param $str
+     * @return string
+     */
+    public static function formataCPFCNPJ($str)
+    {
+        if (11 == strlen($str)) {
+            $str = CPF::formatar($str);
+        } elseif (14 == strlen($str)) {
+            $str = CNPJ::formatar($str);
+        }
+
+        return $str;
+    }
 }
