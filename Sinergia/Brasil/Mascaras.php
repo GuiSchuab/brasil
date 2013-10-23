@@ -70,4 +70,20 @@ class Mascaras
         $ret = str_pad($cmc, 6, '0', STR_PAD_LEFT);
         return $ret;
     }
+
+    /**
+     * Retorna o cep no formato correto
+     * @param $cep
+     * @return bool|string
+     */
+    public static function formataCEP($cep)
+    {
+        if (8 == strlen($cep)) {
+            $ret = substr($cep, 0, 2) . '.' . substr($cep, 2, 3) . '-' . substr($cep, 5, 3);
+        } else {
+            $ret = false;
+        }
+
+        return $ret;
+    }
 }
