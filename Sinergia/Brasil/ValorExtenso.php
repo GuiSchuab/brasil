@@ -8,6 +8,14 @@ namespace Sinergia\Brasil;
  */
 class ValorExtenso
 {
+    /**
+     * Função responsável por retornar um valor numérico escrito por extenso.
+     * @param int $valor
+     * @param bool $maiusculas
+     * @param string $moeda
+     * @param string $sexo
+     * @return mixed|string
+     */
     public static function valorExtenso($valor = 0, $maiusculas = false, $moeda = "R", $sexo = "M")
     {
         if ("R" === $moeda) {
@@ -22,8 +30,6 @@ class ValorExtenso
             $intPlural = "";
         }
 
-        //$singular = array("centavo", "real", "mil", "milhão", "bilhão", "trilhão", "quatrilhão");
-        //$plural = array("centavos", "reais", "mil", "milhões", "bilhões", "trilhões", "quatrilhões");
         $singular = array (
             $decSing,
             $intSing,
@@ -140,7 +146,7 @@ class ValorExtenso
         if(!$maiusculas) {
             return($rt ? $rt : "zero");
         } elseif ($rt) {
-            $rt = preg_replace(" E "," e ", ucwords($rt));
+            $rt = preg_replace('[ E ]',' e ', ucwords($rt));
         }
 
         return (($rt) ? ($rt) : "Zero");
