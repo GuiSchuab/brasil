@@ -74,11 +74,12 @@ class Mascaras
 
     /**
      * Retorna o cep no formato correto
-     * @param $cep
+     * @param string $cep
      * @return bool|string
      */
     public static function formataCEP($cep)
     {
+        $cep = preg_replace('![^\d]!', '', $cep);
         if (8 == strlen($cep)) {
             $ret = substr($cep, 0, 2) . '.' . substr($cep, 2, 3) . '-' . substr($cep, 5, 3);
         } else {

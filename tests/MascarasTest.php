@@ -63,4 +63,15 @@ class MascarasTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('000000', Mascaras::formataCMC(""));
         $this->assertEquals('2424242442', Mascaras::formataCMC("2424242442"));
     }
+
+    /**
+     * Testa o retorno do CEP
+     */
+    public function testCEP()
+    {
+        $this->assertEquals("87.020-160", Mascaras::formataCEP("87020160"));
+        $this->assertEquals(10, strlen(Mascaras::formataCEP("86730-000")));
+        $this->assertTrue(Mascaras::formataCEP("87.020160") ? true : false);
+        $this->assertFalse(Mascaras::formataCEP("23543113123529"));
+    }
 }
