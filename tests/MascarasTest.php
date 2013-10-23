@@ -15,4 +15,14 @@ class MascarasTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("92.122.313/0001-53", Mascaras::formataCNPJ("92122313teste0001530"));
         $this->assertEquals("", Mascaras::formataCNPJ("921223130"));
     }
+    
+    /**
+     * Testa o retorno do CPF/CNPJ
+     */
+    public function testCPFCNPJ()
+    {
+        $this->assertEquals("92.122.313/0001-30", Mascaras::formataCPFCNPJ("9212-2313000130"));
+        $this->assertEquals("92.122.313/0001-53", Mascaras::formataCPFCNPJ("92122313teste0001530"));
+        $this->assertEquals("", Mascaras::formataCPFCNPJ("921223130"));
+    }
 }
