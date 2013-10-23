@@ -124,7 +124,7 @@ class Mascaras
     }
 
     /**
-     * Adiciona máscara para formatar CodVal
+     * Máscara para formatar CodVal
      * @param $str
      * @return string
      */
@@ -133,5 +133,15 @@ class Mascaras
         $srt = substr($str, 0, 3) . '-' . substr($str, 3, 3) . '-' . substr($str, 6, 3);
 
         return $srt;
+    }
+
+    /**
+     * Retorna valor no formato 000.000,00
+     * @param $value
+     * @return string
+     */
+    public static function formataMoeda($value)
+    {
+        return $value ? number_format($value, 2, ',', '.') : '';
     }
 }
