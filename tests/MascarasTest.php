@@ -123,4 +123,18 @@ class MascarasTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('1,00', Mascaras::formataMoeda('1'));
         $this->assertEquals('', Mascaras::formataMoeda(''));
     }
+
+    /**
+     * Testa o retorno do formato de um número
+     */
+    public function testNumero()
+    {
+        $this->assertEquals("2.424.242.423,43", Mascaras::formataNumero("2424242423.43"));
+        $this->assertEquals("242.424.242.343,00", Mascaras::formataNumero("242424242343"));
+        $this->assertEquals('2.424.242.423,43', Mascaras::formataNumero(2424242423.43));
+        $this->assertEquals("242.424.242.343,00", Mascaras::formataNumero(242424242343));
+        $this->assertEquals('', Mascaras::formataNumero(''));
+        $this->assertEquals('1,00', Mascaras::formataNumero('1'));
+        $this->assertEquals('', Mascaras::formataNumero(''));
+    }
 }
