@@ -122,4 +122,16 @@ class Mascaras
 
         return $srt;
     }
+
+    /**
+     * Adiciona máscara para formatar CodVal
+     * @param $str
+     * @return string
+     */
+    public static function formataCodVal($str)
+    {
+        $srt = substr($str, 0, 3) . '-' . substr($str, 3, 3) . '-' . substr($str, 6, 3);
+
+        return $srt;
+    }
 }
