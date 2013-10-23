@@ -144,6 +144,7 @@ class ValorExtenso
         }
 
         $rt = trim($rt);
+        $rt = preg_replace('[  ]',' ', $rt);
         if(!$maiusculas) {
             return($rt ? $rt : "zero");
         } elseif ($rt) {
