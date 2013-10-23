@@ -109,4 +109,18 @@ class MascarasTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("--", Mascaras::formataCodVal(""));
         $this->assertEquals("456-243-987", Mascaras::formataCodVal("456243987"));
     }
+
+    /**
+     * Testa o retorno do formato da moeda
+     */
+    public function testMoeda()
+    {
+        $this->assertEquals("2.424.242.423,43", Mascaras::formataMoeda("2424242423.43"));
+        $this->assertEquals("242.424.242.343,00", Mascaras::formataMoeda("242424242343"));
+        $this->assertEquals('2.424.242.423,43', Mascaras::formataMoeda(2424242423.43));
+        $this->assertEquals("242.424.242.343,00", Mascaras::formataMoeda(242424242343));
+        $this->assertEquals('', Mascaras::formataMoeda(''));
+        $this->assertEquals('1,00', Mascaras::formataMoeda('1'));
+        $this->assertEquals('', Mascaras::formataMoeda(''));
+    }
 }
