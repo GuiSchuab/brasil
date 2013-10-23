@@ -42,4 +42,21 @@ class Mascaras
 
         return $str;
     }
+
+    /**
+     * Retorna COSIF em seu formato correto
+     * @param $cosif
+     * @return bool|string
+     */
+    public static function formataCOSIF($cosif)
+    {
+        if (8 == strlen($cosif)) {
+            $ret = substr($cosif, 0, 1) . '.' . substr($cosif, 1, 1) . '.' . substr($cosif, 2, 1)
+                . '.' . substr($cosif, 3, 2) . '.' . substr($cosif, 5, 2) . '-' . substr($cosif, 7, 1);
+        } else {
+            $ret = false;
+        }
+
+        return $ret;
+    }
 }
