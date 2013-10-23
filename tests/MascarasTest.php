@@ -85,4 +85,17 @@ class MascarasTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("", Mascaras::formataCodLS(""));
         $this->assertEquals("12.54", Mascaras::formataCodLS("1254234234"));
     }
+
+    /**
+     * Testa o retorno do CodLS
+     */
+    public function testFone()
+    {
+        $this->assertEquals("0800 242-4243", Mascaras::formataFone("08002424243"));
+        $this->assertEquals("(44) 9999-9999", Mascaras::formataFone("4499999999"));
+        $this->assertEquals("(44) 99999-9999", Mascaras::formataFone("44999999999"));
+        $this->assertEquals("() 99-9999", Mascaras::formataFone("999999"));
+        $this->assertEquals("(67) 8999-9999", Mascaras::formataFone("123456789999999"));
+        $this->assertEquals("", Mascaras::formataFone(""));
+    }
 }
