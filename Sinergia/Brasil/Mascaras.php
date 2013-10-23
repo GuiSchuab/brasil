@@ -46,7 +46,7 @@ class Mascaras
 
     /**
      * Retorna COSIF em seu formato correto
-     * @param $cosif
+     * @param string $cosif (8 caracteres)
      * @return bool|string
      */
     public static function formataCOSIF($cosif)

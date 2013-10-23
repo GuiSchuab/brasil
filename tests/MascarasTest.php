@@ -40,4 +40,15 @@ class MascarasTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("92.122.313/0001-53", Mascaras::formataCPFCNPJ("92122313teste0001530"));
         $this->assertEquals("", Mascaras::formataCPFCNPJ("921223130"));
     }
+
+    /**
+     * Testa o retorno do COSIF
+     */
+    public function testCOSIF()
+    {
+        $this->assertEquals("2.3.5.43.52-9", Mascaras::formataCOSIF("23543529"));
+        $this->assertEquals(13, strlen(Mascaras::formataCOSIF("23547629")));
+        $this->assertTrue(Mascaras::formataCOSIF("23547629") ? true : false);
+        $this->assertFalse(Mascaras::formataCOSIF("23543113123529"));
+    }
 }
