@@ -98,4 +98,15 @@ class MascarasTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("(67) 8999-9999", Mascaras::formataFone("123456789999999"));
         $this->assertEquals("", Mascaras::formataFone(""));
     }
+
+    /**
+     * Testa o retorno do CodVal
+     */
+    public function testCodVal()
+    {
+        $this->assertEquals("080-024-242", Mascaras::formataCodVal("0800242424242343"));
+        $this->assertEquals("243-43-", Mascaras::formataCodVal("24343"));
+        $this->assertEquals("--", Mascaras::formataCodVal(""));
+        $this->assertEquals("456-243-987", Mascaras::formataCodVal("456243987"));
+    }
 }
