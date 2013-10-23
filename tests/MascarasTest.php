@@ -70,8 +70,19 @@ class MascarasTest extends PHPUnit_Framework_TestCase
     public function testCEP()
     {
         $this->assertEquals("87.020-160", Mascaras::formataCEP("87020160"));
-        $this->assertEquals(10, strlen(Mascaras::formataCEP("86730-000")));
-        $this->assertTrue(Mascaras::formataCEP("87.020160") ? true : false);
+        $this->assertEquals(false, strlen(Mascaras::formataCEP("86730-000")));
+        $this->assertFalse(Mascaras::formataCEP("87.020160"));
         $this->assertFalse(Mascaras::formataCEP("23543113123529"));
+    }
+
+    /**
+     * Testa o retorno do CodLS
+     */
+    public function testCodLS()
+    {
+        $this->assertEquals("8s.fs", Mascaras::formataCodLS("8sfs7020"));
+        $this->assertEquals("20", Mascaras::formataCodLS("20"));
+        $this->assertEquals("", Mascaras::formataCodLS(""));
+        $this->assertEquals("12.54", Mascaras::formataCodLS("1254234234"));
     }
 }
