@@ -137,7 +137,7 @@ class Mascaras
 
     /**
      * Retorna valor no formato 000.000,00
-     * @param $value
+     * @param decimal $value
      * @return string
      */
     public static function formataMoeda($value)
@@ -147,7 +147,7 @@ class Mascaras
 
     /**
      * Retorna valor com seu formato e a quantidade de casas decimais desejadas
-     * @param $value
+     * @param decimal $value
      * @param int $decimal (Quantidade de casas decimais a serem retornadas)
      * @return string
      */
