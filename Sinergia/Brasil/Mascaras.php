@@ -100,4 +100,26 @@ class Mascaras
 
         return $val;
     }
+
+    /**
+     * Retorna o telefone no formato correto
+     * @param $str
+     * @return string
+     */
+    public static function formataFone($str)
+    {
+        $str = preg_replace("/[^0-9]/", '', $str);
+        if (!$str) {
+            return '';
+        }
+        if ('0800' == substr($str, 0, 4)) {
+            $srt = substr($str, -11, -7) . ' ' . substr($str, -7, -4) . '-' . substr($str, -4);
+        } elseif (11 == strlen($str)) {
+            $srt = '(' . substr($str, -11, -9) . ') ' . substr($str, -9, -4) . '-' . substr($str, -4);
+        } else {
+            $srt = '(' . substr($str, -10, -8) . ') ' . substr($str, -8, -4) . '-' . substr($str, -4);
+        }
+
+        return $srt;
+    }
 }
