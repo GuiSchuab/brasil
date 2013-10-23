@@ -15,7 +15,22 @@ class MascarasTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("92.122.313/0001-53", Mascaras::formataCNPJ("92122313teste0001530"));
         $this->assertEquals("", Mascaras::formataCNPJ("921223130"));
     }
-    
+
+    /**
+     * Testa o retorno do CPF no formato 123.456.789-01
+     * Caso o CPF tenha menos de 11 dígitos retorna vazio,
+     * caso maior retorna os 11 primeiro dígitos formatados
+     */
+    public function testCPF()
+    {
+        $this->assertEquals("123.456.789-01", Mascaras::formataCPF("123456.789-01"));
+        $this->assertEquals("", Mascaras::formataCPF("12345789-01"));
+        $this->assertEquals("", Mascaras::formataCPF("12345701"));
+        $this->assertEquals("142.345.367-83", Mascaras::formataCPF("1423.4536.7839-901"));
+        $this->assertEquals("", Mascaras::formataCPF("14A.536.839-91"));
+        $this->assertEquals(14, strlen(Mascaras::formataCPF("142.453.739-90")));
+    }
+
     /**
      * Testa o retorno do CPF/CNPJ
      */
