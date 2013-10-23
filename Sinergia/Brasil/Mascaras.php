@@ -144,4 +144,15 @@ class Mascaras
     {
         return $value ? number_format($value, 2, ',', '.') : '';
     }
+
+    /**
+     * Retorna valor com seu formato e a quantidade de casas decimais desejadas
+     * @param $value
+     * @param int $decimal (Quantidade de casas decimais a serem retornadas)
+     * @return string
+     */
+    public static function formataNumero($value, $decimal = 2)
+    {
+        return $value ? number_format($value, $decimal, ',', '.') : '';
+    }
 }
