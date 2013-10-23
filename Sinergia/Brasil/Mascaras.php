@@ -86,4 +86,18 @@ class Mascaras
 
         return $ret;
     }
+
+    /**
+     * Retorna CodLS no formato correto
+     * @param $val
+     * @return string
+     */
+    public static function formataCodLS($val)
+    {
+        if ($val) {
+            $val = substr($val, 0, 2) . '.' . substr($val, 2, 2);
+        }
+
+        return $val;
+    }
 }
