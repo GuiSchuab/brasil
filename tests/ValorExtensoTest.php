@@ -2,12 +2,53 @@
 
 use Sinergia\Brasil\ValorExtenso;
 
-class ValoerExtensoTest extends PHPUnit_Framework_TestCase
+/**
+ * Class ValorExtensoTest
+ */
+class ValorExtensoTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * Realiza testes para a função ValorExtenso
+     */
     public function testValorExtenso()
     {
-        //$result = "cinco reais";
-        echo ValorExtenso::valorExtenso(5.3, true);
-        //$this->assertEquals($result, ValorExtenso::valorExtenso(5));
+        $this->assertEquals('cinco reais e trinta centavos', ValorExtenso::valorExtenso(5.3));
+        $this->assertEquals('Cinco Reais e Trinta Centavos', ValorExtenso::valorExtenso(5.3, true));
+        $this->assertEquals('cinco e trinta centésimos', ValorExtenso::valorExtenso(5.3, false, 'N'));
+        $this->assertEquals('Cinco e Trinta Centésimos', ValorExtenso::valorExtenso(5.3, true, 'N'));
+        $this->assertEquals('Duas e Trinta Centésimos', ValorExtenso::valorExtenso(2.3, true, 'N', 'F'));
+        $this->assertEquals('sessenta e oito reais e sessenta centavos', ValorExtenso::valorExtenso(68.6));
+        $this->assertEquals('noventa e sete reais e setenta centavos', ValorExtenso::valorExtenso(97.7));
+        $this->assertEquals('setenta e cinco reais e sessenta centavos', ValorExtenso::valorExtenso(75.6));
+        $this->assertEquals('oitenta e um reais', ValorExtenso::valorExtenso(81));
+        $this->assertEquals('setenta e um mil, duzentos e trinta e três reais e vinte centavos', ValorExtenso::valorExtenso(71233.2));
+        $this->assertEquals('sessenta e nove mil, quinhentos e treze reais e oitenta centavos', ValorExtenso::valorExtenso(69513.8));
+        $this->assertEquals('vinte e quatro mil, duzentos e três reais e cinquenta centavos', ValorExtenso::valorExtenso(24203.5));
+        $this->assertEquals('setenta e quatro mil e setecentos e trinta e três reais', ValorExtenso::valorExtenso(74733));
+        $this->assertEquals('cinquenta e três milhões, oitocentos e sessenta e oito mil, oitocentos e noventa e seis reais e quarenta centavos', ValorExtenso::valorExtenso(53868896.4));
+        $this->assertEquals('cinquenta e sete milhões, oitocentos e oitenta e quatro mil e novecentos e dezesseis reais', ValorExtenso::valorExtenso(57884916));
+        $this->assertEquals('vinte e nove milhões, trezentos e trinta e quatro mil, cento e trinta e dois reais e cinquenta centavos', ValorExtenso::valorExtenso(29334132.5));
+        $this->assertEquals('noventa e seis milhões, quatrocentos e oitenta e três mil, quinhentos e trinta e oito reais e setenta centavos', ValorExtenso::valorExtenso(96483538.7));
+        $this->assertEquals('vinte e três bilhões, oitocentos e setenta e seis milhões, novecentos e trinta e seis mil, quatrocentos e oito reais e trinta centavos', ValorExtenso::valorExtenso(23876936408.3));
+        $this->assertEquals('três bilhões, setenta e oito milhões, cento e vinte e nove mil, cento e quarenta e três reais e quarenta centavos', ValorExtenso::valorExtenso(3078129143.4));
+        $this->assertEquals('vinte e dois bilhões, setecentos e setenta e nove milhões, cento e doze mil, oitocentos e sessenta e oito reais e cinquenta centavos', ValorExtenso::valorExtenso(22779112868.5));
+        $this->assertEquals('vinte e quatro bilhões, setecentos e vinte e nove milhões, duzentos e cinquenta e três mil e quinhentos e oitenta e cinco reais', ValorExtenso::valorExtenso(24729253585));
+
+        for ($i = 1; $i < 50; $i++) {
+            $this->assertTrue(ctype_upper(substr(ValorExtenso::valorExtenso(rand(0.1, 9999999), true),0,1)));
+            $this->assertTrue(ctype_lower(substr(ValorExtenso::valorExtenso(rand(0.1, 9999999)),0,1)));
+
+            $rand = rand(2, 9999999) / 10;
+            $result = ValorExtenso::valorExtenso($rand);
+            $this->assertTrue(strripos($result, 'real') || strripos($result, 'reais'));
+            $this->assertTrue(strripos($rand, '.') ? strripos($result, 'centavo') && strripos($result, 'centavos') : true);
+        }
+
+         // For para gerar o código de testes abaixo.
+        /*
+        for ($i = 1; $i < 5; $i++) {
+            $x = rand(10,990) / 10;
+            echo '$this->assertEquals(\'' . ValorExtenso::valorExtenso($x) . '\', ValorExtenso::valorExtenso(' . $x . '));' . PHP_EOL;
+        }*/
     }
 }
