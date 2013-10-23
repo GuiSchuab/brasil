@@ -59,4 +59,15 @@ class Mascaras
 
         return $ret;
     }
+
+    /**
+     * Retorna CMC no formato correto
+     * @param $cmc
+     * @return string
+     */
+    public static function formataCMC($cmc)
+    {
+        $ret = str_pad($cmc, 6, '0', STR_PAD_LEFT);
+        return $ret;
+    }
 }
