@@ -51,4 +51,16 @@ class MascarasTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(Mascaras::formataCOSIF("23547629") ? true : false);
         $this->assertFalse(Mascaras::formataCOSIF("23543113123529"));
     }
+
+    /**
+     * Testa o retorno do CMC
+     */
+    public function testCMC()
+    {
+        $this->assertEquals("23543529", Mascaras::formataCMC("23543529"));
+        $this->assertEquals(6, strlen(Mascaras::formataCMC("229")));
+        $this->assertEquals('000029', Mascaras::formataCMC("29"));
+        $this->assertEquals('000000', Mascaras::formataCMC(""));
+        $this->assertEquals('2424242442', Mascaras::formataCMC("2424242442"));
+    }
 }
