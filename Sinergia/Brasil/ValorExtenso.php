@@ -143,6 +143,7 @@ class ValorExtenso
             if ($r) $rt = $rt . (((0 < $i) && ($i <= $fim) && (0 < $inteiro[0]) && (1 > $z)) ? ( ($i < $fim) ? ", " : " e ") : " ") . $r;
         }
 
+        $rt = trim($rt);
         if(!$maiusculas) {
             return($rt ? $rt : "zero");
         } elseif ($rt) {
