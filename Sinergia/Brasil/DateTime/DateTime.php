@@ -7,19 +7,6 @@ use Sinergia\Brasil\Mes;
 
 class DateTime
 {
-    protected static $timestamp;
-
-    /**
-     * Retorna a data convertida em timestamp
-     * @param string $data
-     * @return timestamp
-     */
-    protected static function getTimeStamp($data)
-    {
-        static::$timestamp = strtotime($data);
-        return static::$timestamp;
-    }
-
     /**
      * Formato de data a ser passada: string
      *      Y-m-d H:i:s
@@ -30,17 +17,15 @@ class DateTime
      *  2: para dia de mes de ano
      *  3: para semana, dia de mes de ano as hora:minuto:segundos
      *  4: dia de mes de ano as hora:minuto:segundos
-     * @param string $data
+     * @param int $data
      * @param int $tp
      * @return string
      */
-    public static function dataExtensa($data = '', $tp)
+    public static function dataExtensa($data = 0, $tp)
     {
-        if ('' == $data) {
+        if (0 == $data) {
             $data = time();
         }
-
-        $data = static::getTimeStamp($data);
 
         $sem = Semana::$NOMESF[date("N", $data)];
         $mes = Mes::$NOMES[date("m", $data)];
