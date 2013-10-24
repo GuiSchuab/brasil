@@ -2,8 +2,16 @@
 
 namespace Sinergia\Brasil\DateTime;
 
+use Sinergia\Brasil\Semana;
+use Sinergia\Brasil\Mes;
+
 class DataExtenso
 {
+    const SEMANA_DIA_MES_ANO = 1;
+    const DIA_MES_ANO = 2;
+    const SEMANA_DIA_MES_ANO_HORA = 3;
+    const DIA_MES_ANO_HORA = 4;
+
     /**
      * Formato de data a ser passada: string
      *      Y-m-d H:i:s
@@ -14,11 +22,12 @@ class DataExtenso
      *  2: para dia de mes de ano
      *  3: para semana, dia de mes de ano as hora:minuto:segundos
      *  4: dia de mes de ano as hora:minuto:segundos
-     * @param int $data
      * @param int $tp
+     * @param int $data
      * @return string
+     * @throws \DomainException
      */
-    public static function dataExtensa($data = 0, $tp)
+    public static function formatar($tp = 1, $data = 0)
     {
         if (0 == $data) {
             $data = time();
@@ -28,11 +37,11 @@ class DataExtenso
         $mes = Mes::$NOMES[date("m", $data)];
 
         switch ($tp) {
-            case 1 : return $sem . ", " . date("d", $data) . " de " . $mes . " de " . date("Y", $data);
-            case 2 : return date("d",$data) . " de " . $mes . " de " . date("Y",$data);
-            case 3 : return $sem . ", " . date("d", $data) . " de " . $mes . " de " . date("Y", $data) . " as " .  date("H:i:s", $data);
-            case 4 : return date("d", $data) . " de " . $mes . " de " . date("Y", $data) . " as " . date("H:i:s", $data);
-            default : return $sem . ", " . date("d", $data) . " de " . $mes . " de " . date("Y", $data);
+            case 1: return $sem . ", " . date("d", $data) . " de " . $mes . " de " . date("Y", $data);
+            case 2: return date("d",$data) . " de " . $mes . " de " . date("Y",$data);
+            case 3: return $sem . ", " . date("d", $data) . " de " . $mes . " de " . date("Y", $data) . " as " .  date("H:i:s", $data);
+            case 4: return date("d", $data) . " de " . $mes . " de " . date("Y", $data) . " as " . date("H:i:s", $data);
+            default: throw new \DomainException("Tipo '$tp' inváldo. Utilize as constantes disponíveis na classe.");
         }
     }
 }
