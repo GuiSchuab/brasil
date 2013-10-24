@@ -33,22 +33,55 @@ class ValorExtensoTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('três bilhões, setenta e oito milhões, cento e vinte e nove mil, cento e quarenta e três reais e quarenta centavos', ValorExtenso::valorExtenso(3078129143.4));
         $this->assertEquals('vinte e dois bilhões, setecentos e setenta e nove milhões, cento e doze mil, oitocentos e sessenta e oito reais e cinquenta centavos', ValorExtenso::valorExtenso(22779112868.5));
         $this->assertEquals('vinte e quatro bilhões, setecentos e vinte e nove milhões, duzentos e cinquenta e três mil e quinhentos e oitenta e cinco reais', ValorExtenso::valorExtenso(24729253585));
+    }
 
+    /**
+     * Verifica se ao passar o parâmetro maiúsculo todas as iniciais da string de retorno estão maiúsculas.
+     */
+    public function testUpper()
+    {
         for ($i = 1; $i < 50; $i++) {
             $this->assertTrue(ctype_upper(substr(ValorExtenso::valorExtenso(rand(0.1, 9999999), true),0,1)));
-            $this->assertTrue(ctype_lower(substr(ValorExtenso::valorExtenso(rand(0.1, 9999999)),0,1)));
+        }
+    }
 
+    /**
+     * Verifica se todas as letras da string de retorno estão minúsculas
+     */
+    public function testLower()
+    {
+        for ($i = 1; $i < 50; $i++) {
+            $this->assertTrue(ctype_lower(substr(ValorExtenso::valorExtenso(rand(0.1, 9999999)),0,1)));
+        }
+    }
+
+    /**
+     * Verifica se todos os retornos contém a palavra real ou reais
+     */
+    public function testReais()
+    {
+        for ($i = 1; $i < 50; $i++) {
             $rand = rand(2, 9999999) / 10;
             $result = ValorExtenso::valorExtenso($rand);
             $this->assertTrue(strripos($result, 'real') || strripos($result, 'reais'));
-            $this->assertTrue(strripos($rand, '.') ? strripos($result, 'centavo') && strripos($result, 'centavos') : true);
         }
+    }
 
-         // For para gerar o código de testes abaixo.
-        /*
-        for ($i = 1; $i < 5; $i++) {
-            $x = rand(10,990) / 10;
-            echo '$this->assertEquals(\'' . ValorExtenso::valorExtenso($x) . '\', ValorExtenso::valorExtenso(' . $x . '));' . PHP_EOL;
-        }*/
+    /**
+     * Verifica se todos os números decimais contém centavo ou centavos
+     */
+    public function testCentavos()
+    {
+        for ($i = 1; $i < 50; $i++) {
+            $rand = rand(2, 9999999) / 100;
+            $result = ValorExtenso::valorExtenso($rand);
+            $ext = true;
+            if (strripos($rand, '.')) {
+                if (strripos($result, 'centavo') === false && strripos($result, 'centavos') === false) {
+                    $ext = false;
+                }
+                $this->assertTrue($ext);
+            }
+        }
     }
 }
