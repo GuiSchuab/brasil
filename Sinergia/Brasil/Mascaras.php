@@ -46,7 +46,7 @@ class Mascaras
 
     /**
      * Retorna COSIF em seu formato correto
-     * @param string $cosif (8 caracteres)
+     * @param  string      $cosif (8 caracteres)
      * @return bool|string
      */
     public static function formataCOSIF($cosif)
@@ -69,12 +69,13 @@ class Mascaras
     public static function formataCMC($cmc)
     {
         $ret = str_pad($cmc, 6, '0', STR_PAD_LEFT);
+
         return $ret;
     }
 
     /**
      * Retorna o cep no formato correto
-     * @param string $cep
+     * @param  string      $cep
      * @return bool|string
      */
     public static function formataCEP($cep)
@@ -138,7 +139,7 @@ class Mascaras
 
     /**
      * Retorna valor no formato 000.000,00
-     * @param decimal $value
+     * @param  decimal $value
      * @return string
      */
     public static function formataMoeda($value)
@@ -148,8 +149,8 @@ class Mascaras
 
     /**
      * Retorna valor com seu formato e a quantidade de casas decimais desejadas
-     * @param decimal $value
-     * @param int $decimal (Quantidade de casas decimais a serem retornadas)
+     * @param  decimal $value
+     * @param  int     $decimal (Quantidade de casas decimais a serem retornadas)
      * @return string
      */
     public static function formataNumero($value, $decimal = 2)

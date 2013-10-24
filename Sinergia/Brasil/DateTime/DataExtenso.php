@@ -22,8 +22,8 @@ class DataExtenso
      *  2: para dia de mes de ano
      *  3: para semana, dia de mes de ano as hora:minuto:segundos
      *  4: dia de mes de ano as hora:minuto:segundos
-     * @param int $tp
-     * @param int $data
+     * @param  int              $tp
+     * @param  int              $data
      * @return string
      * @throws \DomainException
      */

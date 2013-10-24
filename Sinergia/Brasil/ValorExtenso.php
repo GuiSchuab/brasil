@@ -10,10 +10,10 @@ class ValorExtenso
 {
     /**
      * Função responsável por retornar um valor numérico escrito por extenso.
-     * @param int $valor
-     * @param bool $maiusculas
-     * @param string $moeda
-     * @param string $sexo
+     * @param  int          $valor
+     * @param  bool         $maiusculas
+     * @param  string       $moeda
+     * @param  string       $sexo
      * @return mixed|string
      */
     public static function valorExtenso($valor = 0, $maiusculas = false, $moeda = "R", $sexo = "M")
@@ -145,7 +145,7 @@ class ValorExtenso
 
         $rt = trim($rt);
         $rt = preg_replace('[  ]',' ', $rt);
-        if(!$maiusculas) {
+        if (!$maiusculas) {
             return($rt ? $rt : "zero");
         } elseif ($rt) {
             $rt = preg_replace('[ E ]',' e ', ucwords($rt));

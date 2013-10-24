@@ -10,3 +10,10 @@ MASCARAS: formataCNPJ, formataCPF, formataCPFCNPJ, formataCOSIF, formataCMC, for
 
 
 valorExtenso
+
+
+DATA:   dataExtensa,
+        proxDiaUtil, anteriorDiaUtil,
+        toMesRef, atualMesRef,
+        dateTimeToXMLValue, dateTimeToString, dateToXMLValue,
+        diasDeDate
