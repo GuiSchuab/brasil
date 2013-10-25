@@ -4,7 +4,7 @@ namespace Sinergia\Brasil\DateTime;
 
 use Carbon\Carbon;
 
-class DateTime extends Carbon
+class DateBr extends Carbon
 {
     /**
      * Converte um timestamp para determinado valor para formato do XML padrao ABRASF
