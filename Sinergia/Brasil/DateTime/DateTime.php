@@ -33,4 +33,17 @@ class DateTime
         }
         return date('Y-m-d', $date);
     }
+
+    /**
+     * Converte uma timestamp para string formatada, no formato do php tradicional ex: 'd/m/Y' ou 'Y-m-d H:i:s'.
+     *
+     * @param timestamp $date
+     * @param string $format
+     *
+     * @return string
+     */
+    public static function dateTimeToString($date, $format = 'Y-m-d H:i:')
+    {
+        return date($format, $date);
+    }
 }
