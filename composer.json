@@ -20,7 +20,8 @@
         }
 	},
 	"require": {
-		"php": ">=5.3.7"
+		"php": ">=5.3.7",
+        "nesbot/Carbon": "1.4.*"
 	},
     "config": {
         "preferred-install": "dist"
