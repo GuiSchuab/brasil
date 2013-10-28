@@ -170,6 +170,60 @@ class DateBr extends Carbon
         return $this->second($value);
     }
 
+    /**
+     * Retorna o ano de uma DateBr
+     * @return int
+     */
+    public function getYear()
+    {
+        return $this->year;
+    }
+
+    /**
+     * Retorna os meses de uma DateBr
+     * @return int
+     */
+    public function getMonth()
+    {
+        return $this->month;
+    }
+
+    /**
+     * Retorna os dias de uma DateBr
+     * @return int
+     */
+    public function getDay()
+    {
+        return $this->day;
+    }
+
+    /**
+     * Retorna as horas de uma DateBr
+     * @return int
+     */
+    public function getHour()
+    {
+        return $this->hour;
+    }
+
+    /**
+     * Retorna os minutos de uma DateBr
+     * @return int
+     */
+    public function getMinute()
+    {
+        return $this->minute;
+    }
+
+    /**
+     * Retorna os segundos de uma DateBr
+     * @return int
+     */
+    public function getSecond()
+    {
+        return $this->second;
+    }
+
     /*
     public function toDateTimeString($format='Y-m-d H:i:s')
     {
