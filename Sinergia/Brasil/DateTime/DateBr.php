@@ -178,51 +178,51 @@ class DateBr extends Carbon
      */
     public function getYear()
     {
-        return $this->year;
+        str_pad($this->year, 4, '0', STR_PAD_LEFT);
     }
 
     /**
      * Retorna os meses de uma DateBr
-     * @return int
+     * @return string
      */
     public function getMonth()
     {
-        return $this->month;
+        return str_pad($this->month, 2, '0', STR_PAD_LEFT);
     }
 
     /**
      * Retorna os dias de uma DateBr
-     * @return int
+     * @return string
      */
     public function getDay()
     {
-        return $this->day;
+        return str_pad($this->day, 2, '0', STR_PAD_LEFT);
     }
 
     /**
      * Retorna as horas de uma DateBr
-     * @return int
+     * @return string
      */
     public function getHour()
     {
-        return $this->hour;
+        return str_pad($this->hour, 2, '0', STR_PAD_LEFT);
     }
 
     /**
      * Retorna os minutos de uma DateBr
-     * @return int
+     * @return string
      */
     public function getMinute()
     {
-        return $this->minute;
+        return str_pad($this->minute, 2, '0', STR_PAD_LEFT);
     }
 
     /**
      * Retorna os segundos de uma DateBr
-     * @return int
+     * @return string
      */
     public function getSecond()
     {
-        return $this->second;
+        return str_pad($this->second, 2, '0', STR_PAD_LEFT);
     }
 }
