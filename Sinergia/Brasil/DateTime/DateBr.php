@@ -108,4 +108,13 @@ class DateBr extends Carbon
             return $mesref->day(1)->hour(0)->minute(0)->second(0);
         }
     }
+
+    /**
+     * @param integer $value
+     * @return Carbon DateBr
+     */
+    public function setDay($value)
+    {
+        return DateBr::day($value);
+    }
 }
