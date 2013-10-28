@@ -41,8 +41,10 @@ class DiaUtil
             throw new \DomainException("Tipo '$date' inváldo. Utilize DateBr.");
         }
         $ano = @$date->year;
-        if ($ano == static::$pascoa->year) {
-            return static::$pascoa;
+        if(static::$pascoa) {
+            if ($ano == static::$pascoa->getYear()) {
+                return static::$pascoa;
+            }
         }
         $c = floor($ano / 100);
         $n = $ano - (19 * floor($ano / 19));
