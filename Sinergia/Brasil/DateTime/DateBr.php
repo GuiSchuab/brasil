@@ -14,7 +14,7 @@ class DateBr extends Carbon
     public function __construct($time = null, $tz = null)
     {
         if (is_string($time)) {
-            $time = DateBr::strBrToTimestamp($time);
+            $time = DateBr::strBrToUs($time);
         }
         return parent::__construct($time, $tz);
     }
@@ -24,16 +24,12 @@ class DateBr extends Carbon
      * @param $date
      * @return int
      */
-    protected function strBrToTimestamp($date)
+    protected function strBrToUs($date)
     {
         if (preg_match('/^(0[1-9]|[1-2][0-9]|3[0-1])\/([0-1][0-2])\/(\d{4})(T| ){0,1}(([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])){0,1}$/', $date, $datebit)) {
-            $ano = $datebit[3];
-            $mes = $datebit[2];
-            $dia = $datebit[1];
-            $hora = $datebit[6];
-            $min = $datebit[7];
-            $seg = $datebit[8];
-            return mktime($hora, $min, $seg, $mes, $dia, $ano);
+            @list($tudo, $dia, $mes, $ano, $tz, $time, $hora, $min, $seg) = $datebit;
+
+            return "$ano-$mes-$dia $hora:$min:$seg";
         }
         return $date;
     }
@@ -96,5 +92,20 @@ class DateBr extends Carbon
         }
 
         return date($format, $date);
+    }
+
+    /**
+     * Retorna uma data com o primeiro dia do mes.
+     * @param $date
+     * @return Carbon|null
+     */
+    public static function firstDayOfMonth($date)
+    {
+        if (!($date instanceof DateBr)) {
+            return null;
+        } else {
+            $mesref = clone $date;
+            return $mesref->day(1)->hour(0)->minute(0)->second(0);
+        }
     }
 }
