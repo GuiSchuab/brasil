@@ -21,6 +21,7 @@ class DiaUtil
      */
     protected static $feriados_nacionais = array (
         '0101',
+        '0421',
         '0501',
         '0907',
         '1012',
@@ -161,10 +162,7 @@ class DiaUtil
      */
     public static function isFeriado($datref)
     {
-        if (static::isCarnaval($datref) ||
-            static::isQuartaCinzas($datref) ||
-            static::isCorpusChristi($datref) ||
-            static::isPascoa($datref) ||
+        if (static::isPascoa($datref) ||
             static::isPaixao($datref) ||
             static::isFeriadoNacional($datref) ||
             static::isOther($datref)) {
@@ -179,7 +177,7 @@ class DiaUtil
      * @param  DateBr $datref
      * @return bool
      */
-    protected static function isWeekend($datref)
+    public static function isWeekend($datref)
     {
         return ($datref->dayOfWeek < 1 || $datref->dayOfWeek > 5);
     }
@@ -211,7 +209,7 @@ class DiaUtil
      */
     protected static function isFeriadoNacional($datref)
     {
-       return in_array($datref->month . $datref->day, @static::$feriados_nacionais);
+       return in_array($datref->getMonth() . $datref->getDay(), @static::$feriados_nacionais);
     }
 
     /**
