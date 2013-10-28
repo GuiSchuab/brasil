@@ -7,6 +7,33 @@ use Carbon\Carbon;
 class DateBr extends Carbon
 {
     /**
+     * Se o time for string ele aceita o formato DateBr (d/m/Y H:i:s |d/m/YTH:i:s), não aceita formato americano (m/d/Y H:i:s)
+     * @param string|int $time
+     * @param DateTimeZone|string $tz
+     */
+    public function __construct($time = null, $tz = null)
+    {
+        if (is_string($time)) {
+            $time = DateBr::strBrToTimestamp($time);
+        }
+        return parent::__construct($time, $tz);
+    }
+
+    protected function strBrToTimestamp($date)
+    {
+        if (preg_match('/^(0[1-9]|[1-2][0-9]|3[0-1])\/([0-1][0-2])\/(\d{4})(T| ){0,1}(([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])){0,1}$/', $date, $datebit)) {
+            $ano = $datebit[3];
+            $mes = $datebit[2];
+            $dia = $datebit[1];
+            $hora = $datebit[6];
+            $min = $datebit[7];
+            $seg = $datebit[8];
+            return mktime($hora, $min, $seg, $mes, $dia, $ano);
+        }
+        return $date;
+    }
+
+    /**
      * Converte um timestamp para determinado valor para formato do XML padrao ABRASF
      *
      * @param timestamp $value
