@@ -81,18 +81,20 @@ class DateBr extends Carbon
     /**
      * Converte uma timestamp para string formatada, no formato do php tradicional ex: 'd/m/Y' ou 'Y-m-d H:i:s'.
      *
-     * @param DateBr|timestamp $date
+     * @param DateBr $date
      * @param string           $format
      *
      * @return string
      */
-    public static function dateTimeToString($date, $format = 'Y-m-d H:i:s')
+    /**
+     * Converte uma DateBr para string formatada de acordo com o parametro passado.
+     * Defaut: Y-m-d H:i:s
+     * @param string $format
+     * @return bool|string
+     */
+    public function dateTimeToString($format = 'Y-m-d H:i:s')
     {
-        if ($date instanceof DateBr) {
-            $date = strtotime($date);
-        }
-
-        return date($format, $date);
+        return date($format, $this->timestamp);
     }
 
     /**
@@ -223,10 +225,4 @@ class DateBr extends Carbon
     {
         return $this->second;
     }
-
-    /*
-    public function toDateTimeString($format='Y-m-d H:i:s')
-    {
-        return date($format, $this->getTimestamp());
-    }*/
 }
