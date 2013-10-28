@@ -2,6 +2,7 @@
 
 namespace Sinergia\Brasil\DateTime;
 
+use ___PHPSTORM_HELPERS\this;
 use Carbon\Carbon;
 
 class DateBr extends Carbon
@@ -110,11 +111,68 @@ class DateBr extends Carbon
     }
 
     /**
+     * Altera apenas o dia
      * @param integer $value
      * @return Carbon DateBr
      */
     public function setDay($value)
     {
-        return DateBr::day($value);
+        return $this->day($value);
     }
+
+    /**
+     * Altera apenas o mes
+     * @param integer $value
+     * @return Carbon DateBr
+     */
+    public function setMonth($value)
+    {
+        return $this->month($value);
+    }
+
+    /**
+     * Altera apenas o ano
+     * @param integer $value
+     * @return Carbon DateBr
+     */
+    public function setYear($value)
+    {
+        return $this->year($value);
+    }
+
+    /**
+     * Altera apenas a hora
+     * @param Integer $value
+     * @return Carbon DateBr
+     */
+    public function setHour($value)
+    {
+        return $this->hour($value);
+    }
+
+    /**
+     * Altera apenas os minutos
+     * @param integer $value
+     * @return Carbon DateBr
+     */
+    public function setMinute($value)
+    {
+        return $this->minute($value);
+    }
+
+    /**
+     * Altera apenas os segundos
+     * @param integer $value
+     * @return Carbon DateBr
+     */
+    public function setSecond($value)
+    {
+        return $this->second($value);
+    }
+
+    /*
+    public function toDateTimeString($format='Y-m-d H:i:s')
+    {
+        return date($format, $this->getTimestamp());
+    }*/
 }
