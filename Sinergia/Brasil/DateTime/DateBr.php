@@ -230,4 +230,21 @@ class DateBr extends Carbon
     {
         return $this->second;
     }
+
+    /**
+     * Retorna a quantidade de dias entre duas datas.
+     * Se a segunda data não for passada retorna a diferença entre
+     *  a data atual e a data passada.
+     * @param DateBr $datini
+     * @param DateBr $datfim
+     * @return int (Quantidade de dias entre as duas datas)
+     */
+    public static function intervaloDias(DateBr $datini, DateBr $datfim = null)
+    {
+        $datini = new DateBr($datini->toDateString());
+        $datfim = new DateBr($datfim ? $datfim->toDateString() : date('Y-m-d'));
+
+        $interval = $datini->diff($datfim);
+        return $interval->format('%a');
+    }
 }
