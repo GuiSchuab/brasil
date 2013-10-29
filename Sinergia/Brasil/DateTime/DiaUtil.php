@@ -209,7 +209,7 @@ class DiaUtil
      */
     protected static function isFeriadoNacional($datref)
     {
-       return in_array($datref->getMonth() . $datref->getDay(), @static::$feriados_nacionais);
+       return in_array(str_pad($datref->getMonth(), 2, '0', STR_PAD_LEFT) . str_pad($datref->getDay(), 2, '0', STR_PAD_LEFT), @static::$feriados_nacionais);
     }
 
     /**

@@ -179,7 +179,7 @@ class DateBr extends Carbon
      */
     public function getYear()
     {
-        str_pad($this->year, 4, '0', STR_PAD_LEFT);
+        return $this->year;
     }
 
     /**
@@ -188,7 +188,7 @@ class DateBr extends Carbon
      */
     public function getMonth()
     {
-        return str_pad($this->month, 2, '0', STR_PAD_LEFT);
+        return $this->month;
     }
 
     /**
@@ -197,7 +197,7 @@ class DateBr extends Carbon
      */
     public function getDay()
     {
-        return str_pad($this->day, 2, '0', STR_PAD_LEFT);
+        return $this->day;
     }
 
     /**
@@ -206,7 +206,7 @@ class DateBr extends Carbon
      */
     public function getHour()
     {
-        return str_pad($this->hour, 2, '0', STR_PAD_LEFT);
+        return $this->hour;
     }
 
     /**
@@ -215,7 +215,7 @@ class DateBr extends Carbon
      */
     public function getMinute()
     {
-        return str_pad($this->minute, 2, '0', STR_PAD_LEFT);
+        return $this->minute;
     }
 
     /**
@@ -224,6 +224,6 @@ class DateBr extends Carbon
      */
     public function getSecond()
     {
-        return str_pad($this->second, 2, '0', STR_PAD_LEFT);
+        return $this->second;
     }
 }
