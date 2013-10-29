@@ -16,6 +16,8 @@ class DateBr extends Carbon
     {
         if (is_string($time)) {
             $time = DateBr::strBrToUs($time);
+        } elseif (is_int($time)) {
+            $time = date('Y-m-d H:i:s', $time);
         }
         return parent::__construct($time, $tz);
     }
@@ -27,10 +29,9 @@ class DateBr extends Carbon
      */
     protected function strBrToUs($date)
     {
-        if (preg_match('/^(0[1-9]|[1-2][0-9]|3[0-1])\/([0-1][0-2])\/(\d{4})(T| ){0,1}(([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])){0,1}$/', $date, $datebit)) {
+        if (preg_match('/^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/(\d{4})(T| ){0,1}(([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])){0,1}$/', $date, $datebit)) {
             @list($tudo, $dia, $mes, $ano, $tz, $time, $hora, $min, $seg) = $datebit;
-
-            return "$ano-$mes-$dia $hora:$min:$seg";
+            return "$ano-$mes-$dia" . ($hora | $min | $seg ? "$hora:$min:$seg" : "");
         }
         return $date;
     }
