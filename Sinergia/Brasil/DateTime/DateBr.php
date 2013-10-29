@@ -9,7 +9,7 @@ class DateBr extends Carbon
 {
     /**
      * Se o time for string ele aceita o formato DateBr (d/m/Y H:i:s |d/m/YTH:i:s), não aceita formato americano (m/d/Y H:i:s)
-     * @param string|int $time
+     * @param string|int          $time
      * @param DateTimeZone|string $tz
      */
     public function __construct($time = null, $tz = null)
@@ -19,6 +19,7 @@ class DateBr extends Carbon
         } elseif (is_int($time)) {
             $time = date('Y-m-d H:i:s', $time);
         }
+
         return parent::__construct($time, $tz);
     }
 
@@ -31,8 +32,10 @@ class DateBr extends Carbon
     {
         if (preg_match('/^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/(\d{4})(T| ){0,1}(([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])){0,1}$/', $date, $datebit)) {
             @list($tudo, $dia, $mes, $ano, $tz, $time, $hora, $min, $seg) = $datebit;
+
             return "$ano-$mes-$dia" . ($hora | $min | $seg ? "$hora:$min:$seg" : "");
         }
+
         return $date;
     }
 
@@ -83,14 +86,14 @@ class DateBr extends Carbon
      * Converte uma timestamp para string formatada, no formato do php tradicional ex: 'd/m/Y' ou 'Y-m-d H:i:s'.
      *
      * @param DateBr $date
-     * @param string           $format
+     * @param string $format
      *
      * @return string
      */
     /**
      * Converte uma DateBr para string formatada de acordo com o parametro passado.
      * Defaut: Y-m-d H:i:s
-     * @param string $format
+     * @param  string      $format
      * @return bool|string
      */
     public function dateTimeToString($format = 'Y-m-d H:i:s')
@@ -109,14 +112,15 @@ class DateBr extends Carbon
             return null;
         } else {
             $mesref = clone $date;
+
             return $mesref->day(1)->hour(0)->minute(0)->second(0);
         }
     }
 
     /**
      * Altera apenas o dia
-     * @param integer $value
-     * @return Carbon DateBr
+     * @param  integer $value
+     * @return Carbon  DateBr
      */
     public function setDay($value)
     {
@@ -125,8 +129,8 @@ class DateBr extends Carbon
 
     /**
      * Altera apenas o mes
-     * @param integer $value
-     * @return Carbon DateBr
+     * @param  integer $value
+     * @return Carbon  DateBr
      */
     public function setMonth($value)
     {
@@ -135,8 +139,8 @@ class DateBr extends Carbon
 
     /**
      * Altera apenas o ano
-     * @param integer $value
-     * @return Carbon DateBr
+     * @param  integer $value
+     * @return Carbon  DateBr
      */
     public function setYear($value)
     {
@@ -145,8 +149,8 @@ class DateBr extends Carbon
 
     /**
      * Altera apenas a hora
-     * @param Integer $value
-     * @return Carbon DateBr
+     * @param  Integer $value
+     * @return Carbon  DateBr
      */
     public function setHour($value)
     {
@@ -155,8 +159,8 @@ class DateBr extends Carbon
 
     /**
      * Altera apenas os minutos
-     * @param integer $value
-     * @return Carbon DateBr
+     * @param  integer $value
+     * @return Carbon  DateBr
      */
     public function setMinute($value)
     {
@@ -165,8 +169,8 @@ class DateBr extends Carbon
 
     /**
      * Altera apenas os segundos
-     * @param integer $value
-     * @return Carbon DateBr
+     * @param  integer $value
+     * @return Carbon  DateBr
      */
     public function setSecond($value)
     {

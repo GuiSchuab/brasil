@@ -2,7 +2,7 @@
 
 use Sinergia\Brasil\DateTime\DateBr;
 
-class DateBrTest
+class DateBrTest extends PHPUnit_Framework_TestCase
 {
     /**
      * Testa um intervalo de 15 anos se todos dias estão sendo gerados corretamente pelo DateBr
@@ -96,4 +96,4 @@ class DateBrTest
             $this->assertEquals($tmstp, $dateBr->timestamp);
         }
     }
-} 
+}

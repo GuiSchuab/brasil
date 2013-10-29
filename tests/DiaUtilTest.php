@@ -10,8 +10,8 @@ class DiaUtilTest extends PHPUnit_Framework_TestCase
      */
     public function testPascoa()
     {
-        $this->assertEquals('31/03/2013', DiaUtil::dataPascoa(new DateBr('10/04/2013 00:00:00'))->dateTimeToString('d/m/Y'));
-        $this->assertEquals('20/04/2014', DiaUtil::dataPascoa(new DateBr('10/04/2014 00:00:00'))->dateTimeToString('d/m/Y'));
+        $this->assertEquals('31/03/2013', DiaUtil::dataPascoa(new DateBr('22/04/2013 00:00:00'))->dateTimeToString('d/m/Y'));
+        $this->assertEquals('20/04/2014', DiaUtil::dataPascoa(new DateBr('30/04/2014 00:00:00'))->dateTimeToString('d/m/Y'));
         $this->assertEquals('05/04/2015', DiaUtil::dataPascoa(new DateBr('10/04/2015 00:00:00'))->dateTimeToString('d/m/Y'));
     }
 
@@ -21,7 +21,7 @@ class DiaUtilTest extends PHPUnit_Framework_TestCase
     public function testSemanaPascoa()
     {
         for ($i = 2000; $i < 2100; $i++) {
-            $this->assertEquals(0, DiaUtil::dataPascoa(new DateBr("10/04/$i 00:00:00"))->dateTimeToString('w'));
+            $this->assertEquals(0, DiaUtil::dataPascoa(new DateBr("17/04/$i 00:00:00"))->dateTimeToString('w'));
         }
     }
 
@@ -30,8 +30,8 @@ class DiaUtilTest extends PHPUnit_Framework_TestCase
      */
     public function testPaixao()
     {
-        $this->assertEquals('03/04/2015', DiaUtil::dataPaixaoCristo(new DateBr('10/04/2015 00:00:00'))->dateTimeToString('d/m/Y'));
-        $this->assertEquals('25/03/2016', DiaUtil::dataPaixaoCristo(new DateBr('10/04/2016 00:00:00'))->dateTimeToString('d/m/Y'));
+        $this->assertEquals('03/04/2015', DiaUtil::dataPaixaoCristo(new DateBr('10/09/2015 00:00:00'))->dateTimeToString('d/m/Y'));
+        $this->assertEquals('25/03/2016', DiaUtil::dataPaixaoCristo(new DateBr('10/06/2016 00:00:00'))->dateTimeToString('d/m/Y'));
         $this->assertEquals('14/04/2017', DiaUtil::dataPaixaoCristo(new DateBr('10/04/2017 00:00:00'))->dateTimeToString('d/m/Y'));
     }
 
@@ -51,8 +51,8 @@ class DiaUtilTest extends PHPUnit_Framework_TestCase
     public function testQuartaCinzas()
     {
         $this->assertEquals('18/02/2015', DiaUtil::dataQuartaCinzas(new DateBr('10/04/2015 00:00:00'))->dateTimeToString('d/m/Y'));
-        $this->assertEquals('10/02/2016', DiaUtil::dataQuartaCinzas(new DateBr('10/04/2016 00:00:00'))->dateTimeToString('d/m/Y'));
-        $this->assertEquals('01/03/2017', DiaUtil::dataQuartaCinzas(new DateBr('10/04/2017 00:00:00'))->dateTimeToString('d/m/Y'));
+        $this->assertEquals('10/02/2016', DiaUtil::dataQuartaCinzas(new DateBr('23/04/2016 00:00:00'))->dateTimeToString('d/m/Y'));
+        $this->assertEquals('01/03/2017', DiaUtil::dataQuartaCinzas(new DateBr('19/04/2017 00:00:00'))->dateTimeToString('d/m/Y'));
     }
 
     /**
@@ -70,9 +70,9 @@ class DiaUtilTest extends PHPUnit_Framework_TestCase
      */
     public function testCorpusChristi()
     {
-        $this->assertEquals('04/06/2015', DiaUtil::dataCorpusChristi(new DateBr('10/04/2015 00:00:00'))->dateTimeToString('d/m/Y'));
+        $this->assertEquals('04/06/2015', DiaUtil::dataCorpusChristi(new DateBr('15/04/2015 00:00:00'))->dateTimeToString('d/m/Y'));
         $this->assertEquals('26/05/2016', DiaUtil::dataCorpusChristi(new DateBr('10/04/2016 00:00:00'))->dateTimeToString('d/m/Y'));
-        $this->assertEquals('15/06/2017', DiaUtil::dataCorpusChristi(new DateBr('10/04/2017 00:00:00'))->dateTimeToString('d/m/Y'));
+        $this->assertEquals('15/06/2017', DiaUtil::dataCorpusChristi(new DateBr('21/04/2017 00:00:00'))->dateTimeToString('d/m/Y'));
     }
 
     /**
@@ -92,7 +92,7 @@ class DiaUtilTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals('17/02/2015', DiaUtil::dataCarnaval(new DateBr('25/09/2015 00:00:00'))->dateTimeToString('d/m/Y'));
         $this->assertEquals('09/02/2016', DiaUtil::dataCarnaval(new DateBr('10/04/2016 00:00:00'))->dateTimeToString('d/m/Y'));
-        $this->assertEquals('28/02/2017', DiaUtil::dataCarnaval(new DateBr('10/04/2017 00:00:00'))->dateTimeToString('d/m/Y'));
+        $this->assertEquals('28/02/2017', DiaUtil::dataCarnaval(new DateBr('05/04/2017 00:00:00'))->dateTimeToString('d/m/Y'));
     }
 
     /**
@@ -128,4 +128,4 @@ class DiaUtilTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(DiaUtil::isFeriado(new DateBr('15/11/2013 00:00:00')));
         $this->assertTrue(DiaUtil::isFeriado(new DateBr('25/12/2013 00:00:00')));
     }
-} 
+}
