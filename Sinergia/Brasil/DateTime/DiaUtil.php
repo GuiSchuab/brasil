@@ -116,7 +116,7 @@ class DiaUtil
     /**
      * Retorna o póximo dia útil, se a data passsada for útil, retorna ela mesma.
      * @param  DateBr $datref
-     * @return string
+     * @return DateBr
      */
     public static function proxDiaUtil($datref)
     {
