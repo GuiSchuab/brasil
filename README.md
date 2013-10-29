@@ -14,6 +14,6 @@ valorExtenso
 
 DATA:   dataExtensa,
         proxDiaUtil, anteriorDiaUtil,
-        toMesRef, atualMesRef,
+        toMesRef,
         dateTimeToXMLValue, dateTimeToString, dateToXMLValue,
         diasDeDate

@@ -96,4 +96,11 @@ class DateBrTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($tmstp, $dateBr->timestamp);
         }
     }
+
+    public function testIntervaloDias()
+    {
+        $this->assertEquals(30, DateBr::intervaloDiff(new DateBr('2013-10-01'), new DateBr('2013-10-31')));
+        $this->assertEquals(7, DateBr::intervaloDiff(new DateBr('2013-09-01'), new DateBr('2013-08-25')));
+        $this->assertEquals(30, DateBr::intervaloDiff(new DateBr('2013-11-01'), new DateBr('2013-12-1')));
+    }
 }
