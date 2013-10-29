@@ -103,18 +103,12 @@ class DateBr extends Carbon
 
     /**
      * Retorna uma data com o primeiro dia do mes.
-     * @param $date
-     * @return Carbon|null
+     * @return DateBr
      */
-    public static function firstDayOfMonth($date)
+    public function firstDayOfMonth()
     {
-        if (!($date instanceof DateBr)) {
-            return null;
-        } else {
-            $mesref = clone $date;
-
-            return $mesref->day(1)->hour(0)->minute(0)->second(0);
-        }
+        $firstDay = clone $this;
+        return $firstDay->day(1)->hour(0)->minute(0)->second(0);
     }
 
     /**
