@@ -108,6 +108,7 @@ class DateBr extends Carbon
     public function firstDayOfMonth()
     {
         $firstDay = clone $this;
+
         return $firstDay->day(1)->hour(0)->minute(0)->second(0);
     }
 
@@ -229,9 +230,9 @@ class DateBr extends Carbon
      * Retorna a quantidade de dias entre duas datas.
      * Se a segunda data não for passada retorna a diferença entre
      *  a data atual e a data passada.
-     * @param DateBr $datini
-     * @param DateBr $datfim
-     * @return int (Quantidade de dias entre as duas datas)
+     * @param  DateBr $datini
+     * @param  DateBr $datfim
+     * @return int    (Quantidade de dias entre as duas datas)
      */
     public static function intervaloDias(DateBr $datini, DateBr $datfim = null)
     {
@@ -239,6 +240,7 @@ class DateBr extends Carbon
         $datfim = new DateBr($datfim ? $datfim->toDateString() : date('Y-m-d'));
 
         $interval = $datini->diff($datfim);
+
         return $interval->format('%a');
     }
 }
