@@ -47,7 +47,7 @@ class DateBrTest extends PHPUnit_Framework_TestCase
     /**
      * Confere se todos os segundos de um dia estão gerando o timestamp da maneira correta.
      */
-    public function testContructDateTime()
+    public function testContructDateBr()
     {
         $ano = date('Y', time());
         $mes = date('m', time());;
@@ -92,10 +92,13 @@ class DateBrTest extends PHPUnit_Framework_TestCase
             $i = date('i', $tmstp);
             $s = date('s', $tmstp);
 
-            $dateBr = new DateBr($tmstp);
+            $dateBr = new DateBr((int)$tmstp);
+            $this->assertEquals($tmstp, $dateBr->timestamp);
+            $dateBr = new DateBr((string)$tmstp);
             $this->assertEquals($tmstp, $dateBr->timestamp);
         }
     }
+
 
     public function testIntervaloDias()
     {

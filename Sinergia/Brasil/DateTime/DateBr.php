@@ -14,10 +14,10 @@ class DateBr extends Carbon
      */
     public function __construct($time = null, $tz = null)
     {
-        if (is_string($time)) {
-            $time = DateBr::strBrToUs($time);
-        } elseif (is_int($time)) {
+        if (is_numeric($time)) {
             $time = date('Y-m-d H:i:s', $time);
+        } else {
+            $time = DateBr::strBrToUs($time);
         }
 
         return parent::__construct($time, $tz);
