@@ -11,7 +11,7 @@ class DiaUtil
     protected static $feriado_handler;
 
     /**
-     * @var DateBr
+     * @var DateTimeBr
      */
     protected static $pascoa;
 
@@ -32,13 +32,13 @@ class DiaUtil
 
     /**
      * Retorna um DateBr com o dia da páscoa do ano da data informada
-     * @param  DateBr           $date
-     * @return DateBr
+     * @param  DateTimeBr           $date
+     * @return DateTimeBr
      * @throws \DomainException
      */
     public static function dataPascoa($date)
     {
-        if (!$date instanceof DateBr) {
+        if (!$date instanceof DateTimeBr) {
             throw new \DomainException("Tipo '$date' inváldo. Utilize DateBr.");
         }
         $ano = @$date->year;
@@ -58,14 +58,14 @@ class DiaUtil
         $L = $i - $j;
         $mes = 3 + floor(($L + 40) / 44);
         $dia = $L + 28 - (31 * floor($mes / 4));
-        static::$pascoa = DateBr::createFromDate($ano, $mes, $dia);
+        static::$pascoa = DateTimeBr::createFromDate($ano, $mes, $dia);
 
         return static::$pascoa;
     }
 
     /**
      * Retorna um DateBr com o dia da Paixão de Cristo do ano da data passada.
-     * @param  DateBr         $date
+     * @param  DateTimeBr         $date
      * @return \Carbon\Carbon DateBr
      */
     public static function dataPaixaoCristo($date)
@@ -115,8 +115,8 @@ class DiaUtil
 
     /**
      * Retorna o póximo dia útil, se a data passsada for útil, retorna ela mesma.
-     * @param  DateBr $datref
-     * @return DateBr
+     * @param  DateTimeBr $datref
+     * @return DateTimeBr
      */
     public static function proxDiaUtil($datref)
     {
@@ -125,8 +125,8 @@ class DiaUtil
 
     /**
      * Retorna o dia útil anterior, se a data passsada for útil, retorna ela mesma.
-     * @param  DateBr $datref
-     * @return DateBr
+     * @param  DateTimeBr $datref
+     * @return DateTimeBr
      */
     public static function anteriorDiaUtil($datref)
     {
@@ -138,14 +138,14 @@ class DiaUtil
      * Se a data passsada for útil, retorna ela mesma.
      *   1 - Próximo dia útil
      *  -1 - Anterior dia útil
-     * @param  DateBr           $datref
+     * @param  DateTimeBr           $datref
      * @param  integer          $param
-     * @return DateBr
+     * @return DateTimeBr
      * @throws \DomainException
      */
     protected static function diaUtil($datref, $param)
     {
-        if (!$datref instanceof DateBr) {
+        if (!$datref instanceof DateTimeBr) {
             throw new \DomainException("Tipo '$datref' inváldo. Utilize DateBr.");
         }
         while (static::isWeekend($datref) || static::isFeriado($datref)) {
@@ -157,7 +157,7 @@ class DiaUtil
 
     /**
      * Verifica se a data passada é feriado
-     * @param  DateBr $datref
+     * @param  DateTimeBr $datref
      * @return bool
      */
     public static function isFeriado($datref)
@@ -174,7 +174,7 @@ class DiaUtil
 
     /**
      * Verifica se é final de semana
-     * @param  DateBr $datref
+     * @param  DateTimeBr $datref
      * @return bool
      */
     public static function isWeekend($datref)
@@ -184,7 +184,7 @@ class DiaUtil
 
     /**
      * Verifica se a data passada por parâmetro é Páscoa
-     * @param  DateBr $datref
+     * @param  DateTimeBr $datref
      * @return bool
      */
     protected static function isPascoa($datref)
@@ -194,7 +194,7 @@ class DiaUtil
 
     /**
      * Verifica se a data passada por parâmetro é Paixão de Cristo
-     * @param  DateBr $datref
+     * @param  DateTimeBr $datref
      * @return bool
      */
     protected static function isPaixao($datref)
@@ -204,7 +204,7 @@ class DiaUtil
 
     /**
      * Verifica se a data é um feriado nacional
-     * @param  DateBr $datref
+     * @param  DateTimeBr $datref
      * @return bool
      */
     protected static function isFeriadoNacional($datref)
@@ -214,7 +214,7 @@ class DiaUtil
 
     /**
      * Verifica se a data passada é Corpus Christi
-     * @param  DateBr $datref
+     * @param  DateTimeBr $datref
      * @return bool
      */
     protected static function isCorpusChristi($datref)
@@ -224,7 +224,7 @@ class DiaUtil
 
     /**
      * Verifica se a data passada é Quarta-feira de Cinzas
-     * @param  DateBr $datref
+     * @param  DateTimeBr $datref
      * @return bool
      */
     protected static function isQuartaCinzas($datref)
@@ -234,7 +234,7 @@ class DiaUtil
 
     /**
      * Verifica se a data passada é carnaval
-     * @param  DateBr $datref
+     * @param  DateTimeBr $datref
      * @return bool
      */
     protected static function isCarnaval($datref)
