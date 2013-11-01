@@ -5,7 +5,7 @@ namespace Sinergia\Brasil\DateTime;
 use ___PHPSTORM_HELPERS\this;
 use Carbon\Carbon;
 
-class DateBr extends Carbon
+class DateTimeBr extends Carbon
 {
     /**
      * Se o time for string ele aceita o formato DateBr (d/m/Y H:i:s |d/m/YTH:i:s), não aceita formato americano (m/d/Y H:i:s)
@@ -17,7 +17,7 @@ class DateBr extends Carbon
         if (is_numeric($time)) {
             $time = date('Y-m-d H:i:s', $time);
         } else {
-            $time = DateBr::strBrToUs($time);
+            $time = DateTimeBr::strBrToUs($time);
         }
 
         return parent::__construct($time, $tz);
@@ -85,7 +85,7 @@ class DateBr extends Carbon
     /**
      * Converte uma timestamp para string formatada, no formato do php tradicional ex: 'd/m/Y' ou 'Y-m-d H:i:s'.
      *
-     * @param DateBr $date
+     * @param DateTimeBr $date
      * @param string $format
      *
      * @return string
@@ -103,7 +103,7 @@ class DateBr extends Carbon
 
     /**
      * Retorna uma data com o primeiro dia do mes.
-     * @return DateBr
+     * @return DateTimeBr
      */
     public function firstDayOfMonth()
     {
@@ -230,14 +230,14 @@ class DateBr extends Carbon
      * Retorna a quantidade de dias entre duas datas.
      * Se a segunda data não for passada retorna a diferença entre
      *  a data atual e a data passada.
-     * @param  DateBr $datini
-     * @param  DateBr $datfim
+     * @param  DateTimeBr $datini
+     * @param  DateTimeBr $datfim
      * @return int    (Quantidade de dias entre as duas datas)
      */
-    public static function intervaloDias(DateBr $datini, DateBr $datfim = null)
+    public static function intervaloDias(DateTimeBr $datini, DateTimeBr $datfim = null)
     {
-        $datini = new DateBr($datini->toDateString());
-        $datfim = new DateBr($datfim ? $datfim->toDateString() : date('Y-m-d'));
+        $datini = new DateTimeBr($datini->toDateString());
+        $datfim = new DateTimeBr($datfim ? $datfim->toDateString() : date('Y-m-d'));
 
         $interval = $datini->diff($datfim);
 
