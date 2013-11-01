@@ -8,7 +8,7 @@ use Carbon\Carbon;
 class DateTimeBr extends Carbon
 {
     /**
-     * Se o time for string ele aceita o formato DateBr (d/m/Y H:i:s |d/m/YTH:i:s), não aceita formato americano (m/d/Y H:i:s)
+     * Se o time for string ele aceita o formato DateTimeBr (d/m/Y H:i:s |d/m/YTH:i:s), não aceita formato americano (m/d/Y H:i:s)
      * @param string|int          $time
      * @param DateTimeZone|string $tz
      */
