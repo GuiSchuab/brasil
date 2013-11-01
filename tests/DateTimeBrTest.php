@@ -1,8 +1,8 @@
 <?php
 
-use Sinergia\Brasil\DateTime\DateBr;
+use Sinergia\Brasil\DateTime\DateTimeBr;
 
-class DateBrTest extends PHPUnit_Framework_TestCase
+class DateTimeBrTest extends PHPUnit_Framework_TestCase
 {
     /**
      * Testa um intervalo de 15 anos se todos dias estão sendo gerados corretamente pelo DateBr
@@ -19,7 +19,7 @@ class DateBrTest extends PHPUnit_Framework_TestCase
             $dia = date('d', $timestamp);
             $mes = date('m', $timestamp);
             $ano = date('Y', $timestamp);
-            $date_br = new DateBr("$dia/$mes/$ano");
+            $date_br = new DateTimeBr("$dia/$mes/$ano");
             $this->assertEquals($timestamp, $date_br->timestamp);
         }
     }
@@ -39,7 +39,7 @@ class DateBrTest extends PHPUnit_Framework_TestCase
             $dia = date('d', $timestamp);
             $mes = date('m', $timestamp);
             $ano = date('Y', $timestamp);
-            $date_br = new DateBr("$ano-$mes-$dia");
+            $date_br = new DateTimeBr("$ano-$mes-$dia");
             $this->assertEquals($timestamp, $date_br->timestamp);
         }
     }
@@ -65,7 +65,7 @@ class DateBrTest extends PHPUnit_Framework_TestCase
             $hora = date('H', $timestamp);
             $min = date('i', $timestamp);
             $sec = date('s', $timestamp);
-            $date_br = new DateBr("$dia/$mes/$ano $hora:$min:$sec");
+            $date_br = new DateTimeBr("$dia/$mes/$ano $hora:$min:$sec");
             $this->assertEquals($timestamp, $date_br->timestamp);
         }
     }
@@ -92,9 +92,9 @@ class DateBrTest extends PHPUnit_Framework_TestCase
             $i = date('i', $tmstp);
             $s = date('s', $tmstp);
 
-            $dateBr = new DateBr((int)$tmstp);
+            $dateBr = new DateTimeBr((int)$tmstp);
             $this->assertEquals($tmstp, $dateBr->timestamp);
-            $dateBr = new DateBr((string)$tmstp);
+            $dateBr = new DateTimeBr((string)$tmstp);
             $this->assertEquals($tmstp, $dateBr->timestamp);
         }
     }
@@ -102,8 +102,8 @@ class DateBrTest extends PHPUnit_Framework_TestCase
 
     public function testIntervaloDias()
     {
-        $this->assertEquals(30, DateBr::intervaloDias(new DateBr('2013-10-01'), new DateBr('2013-10-31')));
-        $this->assertEquals(7, DateBr::intervaloDias(new DateBr('2013-09-01'), new DateBr('2013-08-25')));
-        $this->assertEquals(30, DateBr::intervaloDias(new DateBr('2013-11-01'), new DateBr('2013-12-1')));
+        $this->assertEquals(30, DateTimeBr::intervaloDias(new DateTimeBr('2013-10-01'), new DateTimeBr('2013-10-31')));
+        $this->assertEquals(7, DateTimeBr::intervaloDias(new DateTimeBr('2013-09-01'), new DateTimeBr('2013-08-25')));
+        $this->assertEquals(30, DateTimeBr::intervaloDias(new DateTimeBr('2013-11-01'), new DateTimeBr('2013-12-1')));
     }
 }
