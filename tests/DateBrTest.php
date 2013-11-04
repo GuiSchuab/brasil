@@ -1,8 +1,8 @@
 <?php
 
-use Sinergia\Brasil\DateTime\DateTimeBr;
+use Sinergia\Brasil\DateTime\DateBr;
 
-class DateTimeBrTest extends PHPUnit_Framework_TestCase
+class DateBrTest extends PHPUnit_Framework_TestCase
 {
     /**
      * Testa um intervalo de 15 anos se todos dias estão sendo gerados corretamente pelo DateBr
@@ -19,7 +19,7 @@ class DateTimeBrTest extends PHPUnit_Framework_TestCase
             $dia = date('d', $timestamp);
             $mes = date('m', $timestamp);
             $ano = date('Y', $timestamp);
-            $date_br = new DateTimeBr("$dia/$mes/$ano");
+            $date_br = new DateBr("$dia/$mes/$ano");
             $this->assertEquals($timestamp, $date_br->timestamp);
         }
     }
@@ -39,7 +39,7 @@ class DateTimeBrTest extends PHPUnit_Framework_TestCase
             $dia = date('d', $timestamp);
             $mes = date('m', $timestamp);
             $ano = date('Y', $timestamp);
-            $date_br = new DateTimeBr("$ano-$mes-$dia");
+            $date_br = new DateBr("$ano-$mes-$dia");
             $this->assertEquals($timestamp, $date_br->timestamp);
         }
     }
@@ -65,7 +65,7 @@ class DateTimeBrTest extends PHPUnit_Framework_TestCase
             $hora = date('H', $timestamp);
             $min = date('i', $timestamp);
             $sec = date('s', $timestamp);
-            $date_br = new DateTimeBr("$dia/$mes/$ano $hora:$min:$sec");
+            $date_br = new DateBr("$dia/$mes/$ano $hora:$min:$sec");
             $this->assertEquals($timestamp, $date_br->timestamp);
         }
     }
@@ -92,31 +92,20 @@ class DateTimeBrTest extends PHPUnit_Framework_TestCase
             $i = date('i', $tmstp);
             $s = date('s', $tmstp);
 
-            $dateBr = new DateTimeBr((int)$tmstp);
+            $dateBr = new DateBr((int)$tmstp);
             $this->assertEquals($tmstp, $dateBr->timestamp);
-            $dateBr = new DateTimeBr((string)$tmstp);
+            $dateBr = new DateBr((string)$tmstp);
             $this->assertEquals($tmstp, $dateBr->timestamp);
         }
     }
 
     /**
-     * Verifica se a difereca de dias entre as duas datas retornadas pela funcao esta correta
+     * Testa se o intervalo de dias entre as duas datas estão corretos.
      */
     public function testIntervaloDias()
     {
-        $this->assertEquals(30, DateTimeBr::intervaloDias(new DateTimeBr('2013-10-01'), new DateTimeBr('2013-10-31')));
-        $this->assertEquals(7, DateTimeBr::intervaloDias(new DateTimeBr('2013-09-01'), new DateTimeBr('2013-08-25')));
-        $this->assertEquals(30, DateTimeBr::intervaloDias(new DateTimeBr('2013-11-01'), new DateTimeBr('2013-12-1')));
-    }
-
-    /**
-     * Verifica o retorno de compareDate.
-     */
-    public function testCompareDate()
-    {
-        $date = new DateTimeBr('2013-10-01');
-        $this->assertEquals(-1, $date->compareDate(new DateTimeBr('2013-09-25')));
-        $this->assertEquals(0, $date->compareDate(new DateTimeBr('2013-10-01')));
-        $this->assertEquals(1, $date->compareDate(new DateTimeBr('2013-10-25')));
+        $this->assertEquals(30, DateBr::intervaloDias(new DateBr('2013-10-01'), new DateBr('2013-10-31')));
+        $this->assertEquals(7, DateBr::intervaloDias(new DateBr('2013-09-01'), new DateBr('2013-08-25')));
+        $this->assertEquals(30, DateBr::intervaloDias(new DateBr('2013-11-01'), new DateBr('2013-12-1')));
     }
 }
