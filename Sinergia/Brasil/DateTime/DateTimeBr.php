@@ -243,4 +243,25 @@ class DateTimeBr extends Carbon
 
         return $interval->format('%a');
     }
+
+    /**
+     * Retorna se a data passada é maior ou menor que a data instanciada
+     * Retorno:
+     *  1 quando a data passada for maior
+     *  0 quando as datas forem iguais
+     *  -1 quando a data passada for menor
+     * @param $compareDate
+     * @return int
+     */
+    public function compareDate($compareDate)
+    {
+        $datini = new DateTimeBr($this->toDateString());
+        $datfim = new DateTimeBr($compareDate ? $compareDate->toDateString() : date('Y-m-d'));
+
+        $interval = $datini->diff($datfim);
+        $operacao = $interval->format('%R');
+        $numero = $interval->format('%a');
+
+        return '0' === $numero ? 0 : ('+' === $operacao  ? 1 : -1);
+    }
 }
