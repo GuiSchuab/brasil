@@ -99,11 +99,24 @@ class DateTimeBrTest extends PHPUnit_Framework_TestCase
         }
     }
 
-
+    /**
+     * Verifica se a difereca de dias entre as duas datas retornadas pela funcao esta correta
+     */
     public function testIntervaloDias()
     {
         $this->assertEquals(30, DateTimeBr::intervaloDias(new DateTimeBr('2013-10-01'), new DateTimeBr('2013-10-31')));
         $this->assertEquals(7, DateTimeBr::intervaloDias(new DateTimeBr('2013-09-01'), new DateTimeBr('2013-08-25')));
         $this->assertEquals(30, DateTimeBr::intervaloDias(new DateTimeBr('2013-11-01'), new DateTimeBr('2013-12-1')));
+    }
+
+    /**
+     * Verifica o retorno de compareDate.
+     */
+    public function testCompareDate()
+    {
+        $date = new DateTimeBr('2013-10-01');
+        $this->assertEquals(-1, $date->compareDate(new DateTimeBr('2013-09-25')));
+        $this->assertEquals(0, $date->compareDate(new DateTimeBr('2013-10-01')));
+        $this->assertEquals(1, $date->compareDate(new DateTimeBr('2013-10-25')));
     }
 }
