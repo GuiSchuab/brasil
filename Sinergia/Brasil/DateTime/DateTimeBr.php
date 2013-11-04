@@ -17,7 +17,7 @@ class DateTimeBr extends Carbon
         if (is_numeric($time)) {
             $time = date('Y-m-d H:i:s', $time);
         } else {
-            $time = DateTimeBr::strBrToUs($time);
+            $time = static::strBrToUs($time);
         }
 
         return parent::__construct($time, $tz);
@@ -37,6 +37,19 @@ class DateTimeBr extends Carbon
         }
 
         return $date;
+    }
+
+    /**
+     * Cria uma nova data DateTimeBr quando passado valor válido para $date
+     * @param string|int|DateTime $date
+     * @return DateTimeBr
+     */
+    public static function createDateTime($date = null)
+    {
+        if (!$date) {
+            return null;
+        }
+        return new static($date);
     }
 
     /**
@@ -253,11 +266,10 @@ class DateTimeBr extends Carbon
      * @param $compareDate
      * @return int
      */
-    public function compareDate($compareDate)
+    public function compareDate($date)
     {
         $datini = new DateTimeBr($this->toDateString());
-        $datfim = new DateTimeBr($compareDate ? $compareDate->toDateString() : date('Y-m-d'));
-
+        $datfim = new DateTimeBr($date ? $date->toDateString() : date('Y-m-d'));
         $interval = $datini->diff($datfim);
         $operacao = $interval->format('%R');
         $numero = $interval->format('%a');
