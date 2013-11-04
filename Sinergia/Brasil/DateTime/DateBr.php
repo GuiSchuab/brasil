@@ -9,19 +9,19 @@ namespace Sinergia\Brasil\DateTime;
 class DateBr extends DateTimeBr
 {
     /**
-     * Se o time for string ele aceita o formato DateBr (d/m/Y), não aceita formato americano (m/d/Y H:i:s)
-     * @param string|int          $time
+     * Se o time for string ele aceita o formato DateBr (d/m/Y), não aceita formato americano (m/d/Y)
+     * @param string|int          $date
      * @param DateTimeZone|string $tz
      */
-    public function __construct($time = null, $tz = null)
+    public function __construct($date = null, $tz = null)
     {
-        if (is_numeric($time)) {
-            $time = date('Y-m-d', $time);
+        if (is_numeric($date)) {
+            $date = date('Y-m-d', $date);
         } else {
-            $time = DateTimeBr::strBrToUs($time);
+            $date = DateTimeBr::strBrToUs($date);
         }
 
-        return parent::__construct($time, $tz);
+        return parent::__construct($date, $tz);
     }
 
     /**
@@ -32,12 +32,11 @@ class DateBr extends DateTimeBr
     protected function strBrToUs($date)
     {
         if (preg_match('/^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/(\d{4})(T| ){0,1}(([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])){0,1}$/', $date, $datebit)) {
-            @list($tudo, $dia, $mes, $ano, $tz, $time, $hora, $min, $seg) = $datebit;
+            @list($tudo, $dia, $mes, $ano, $tz) = $datebit;
 
-            return "$ano-$mes-$dia";// . ($hora | $min | $seg ? "$hora:$min:$seg" : "");
+            return "$ano-$mes-$dia";
         }
 
         return $date;
     }
-
-} 
+}
