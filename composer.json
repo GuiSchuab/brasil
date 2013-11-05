@@ -1,12 +1,12 @@
 {
 	"name": "sinergia/brasil",
 	"description": "Brazilian specific utils.",
-	"version": "0.1.0-alpha",
+	"version": "0.1.0",
 	"keywords": ["php", "brasil", "brazil", "cpnj", "cpf", "uf", "estado"],
 	"homepage": "https://github.com/sinergia/brasil",
 	"license": "MIT",
-    "type": "library",
-    "minimum-stability": "dev",
+    	"type": "library",
+    	"minimum-stability": "dev",
 	"authors": [
 		{
 			"name": "Marcos Neves",
@@ -15,18 +15,18 @@
 		}
 	],
 	"autoload": {
-        "psr-0": {
-            "Sinergia\\Brasil\\": ""
-        }
+	        "psr-0": {
+	            "Sinergia\\Brasil\\": ""
+	        }
 	},
 	"require": {
 		"php": ">=5.3.7",
-        "nesbot/Carbon": "1.4.*"
+        	"nesbot/Carbon": "1.4.*"
 	},
-    "config": {
-        "preferred-install": "dist"
-    },
-    "scripts": {
-        "post-install-cmd": ["[[ -f phpunit.phar ]] || wget https://phar.phpunit.de/phpunit.phar", "chmod +x phpunit.phar"]
-    }
+	"config": {
+        	"preferred-install": "dist"
+    	},
+    	"scripts": {
+        	"post-install-cmd": ["[[ -f phpunit.phar ]] || wget https://phar.phpunit.de/phpunit.phar", "chmod +x phpunit.phar"]
+    	}
 }
