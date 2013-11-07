@@ -2,13 +2,15 @@
 
 namespace Sinergia\Brasil\DateTime;
 
-use ___PHPSTORM_HELPERS\this;
-use Carbon\Carbon;
+use Carbon\Carbon,
+    Exception,
+    DomainException;
 
 class DateTimeBr extends Carbon
 {
     /**
      * Se o time for string ele aceita o formato DateTimeBr (d/m/Y H:i:s |d/m/YTH:i:s), não aceita formato americano (m/d/Y H:i:s)
+     *
      * @param string|int          $time
      * @param DateTimeZone|string $tz
      */
@@ -25,7 +27,9 @@ class DateTimeBr extends Carbon
 
     /**
      * Utilizado pelo construtor da classe
+     *
      * @param $date
+     *
      * @return int
      */
     protected function strBrToUs($date)
@@ -41,15 +45,22 @@ class DateTimeBr extends Carbon
 
     /**
      * Cria uma nova data DateTimeBr quando passado valor válido para $date
+     *
      * @param string|int|DateTime $date
+     *
      * @return DateTimeBr
      */
-    public static function createDateTime($date = null)
+    public static function createDate($date = null)
     {
         if (!$date) {
             return null;
         }
-        return new static($date);
+
+        try {
+            return new static($date);
+        } catch (Exception $e) {
+            throw new DomainException("Data inválida!\n" . $e->getMessage());
+        }
     }
 
     /**
@@ -99,14 +110,16 @@ class DateTimeBr extends Carbon
      * Converte uma timestamp para string formatada, no formato do php tradicional ex: 'd/m/Y' ou 'Y-m-d H:i:s'.
      *
      * @param DateTimeBr $date
-     * @param string $format
+     * @param string     $format
      *
      * @return string
      */
     /**
      * Converte uma DateBr para string formatada de acordo com o parametro passado.
      * Defaut: Y-m-d H:i:s
-     * @param  string      $format
+     *
+     * @param  string $format
+     *
      * @return bool|string
      */
     public function dateTimeToString($format = 'Y-m-d H:i:s')
@@ -127,7 +140,9 @@ class DateTimeBr extends Carbon
 
     /**
      * Altera apenas o dia
+     *
      * @param  integer $value
+     *
      * @return Carbon  DateBr
      */
     public function setDay($value)
@@ -137,7 +152,9 @@ class DateTimeBr extends Carbon
 
     /**
      * Altera apenas o mes
+     *
      * @param  integer $value
+     *
      * @return Carbon  DateBr
      */
     public function setMonth($value)
@@ -147,7 +164,9 @@ class DateTimeBr extends Carbon
 
     /**
      * Altera apenas o ano
+     *
      * @param  integer $value
+     *
      * @return Carbon  DateBr
      */
     public function setYear($value)
@@ -157,7 +176,9 @@ class DateTimeBr extends Carbon
 
     /**
      * Altera apenas a hora
+     *
      * @param  Integer $value
+     *
      * @return Carbon  DateBr
      */
     public function setHour($value)
@@ -167,7 +188,9 @@ class DateTimeBr extends Carbon
 
     /**
      * Altera apenas os minutos
+     *
      * @param  integer $value
+     *
      * @return Carbon  DateBr
      */
     public function setMinute($value)
@@ -177,7 +200,9 @@ class DateTimeBr extends Carbon
 
     /**
      * Altera apenas os segundos
+     *
      * @param  integer $value
+     *
      * @return Carbon  DateBr
      */
     public function setSecond($value)
@@ -243,8 +268,10 @@ class DateTimeBr extends Carbon
      * Retorna a quantidade de dias entre duas datas.
      * Se a segunda data não for passada retorna a diferença entre
      *  a data atual e a data passada.
+     *
      * @param  DateTimeBr $datini
      * @param  DateTimeBr $datfim
+     *
      * @return int    (Quantidade de dias entre as duas datas)
      */
     public static function intervaloDias(DateTimeBr $datini, DateTimeBr $datfim = null)
@@ -263,17 +290,19 @@ class DateTimeBr extends Carbon
      *  1 quando a data passada for maior
      *  0 quando as datas forem iguais
      *  -1 quando a data passada for menor
+     *
      * @param $compareDate
+     *
      * @return int
      */
     public function compareDate($date)
     {
-        $datini = new DateTimeBr($this->toDateString());
-        $datfim = new DateTimeBr($date ? $date->toDateString() : date('Y-m-d'));
+        $datini   = new DateTimeBr($this->toDateString());
+        $datfim   = new DateTimeBr($date ? $date->toDateString() : date('Y-m-d'));
         $interval = $datini->diff($datfim);
         $operacao = $interval->format('%R');
-        $numero = $interval->format('%a');
+        $numero   = $interval->format('%a');
 
-        return '0' === $numero ? 0 : ('+' === $operacao  ? 1 : -1);
+        return '0' === $numero ? 0 : ('+' === $operacao ? 1 : -1);
     }
 }
