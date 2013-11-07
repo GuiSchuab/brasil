@@ -5,6 +5,7 @@ use Sinergia\Brasil\DateTime\DateBr;
 class DateBrTest extends PHPUnit_Framework_TestCase
 {
     /**
+     * @group slow
      * Testa um intervalo de 15 anos se todos dias estão sendo gerados corretamente pelo DateBr
      */
     public function testContructData()
@@ -25,6 +26,7 @@ class DateBrTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group slow
      * Testa um intervalo de 15 anos se todos dias estão sendo gerados corretamente pelo DateBr
      */
     public function testContructDataUniversal()
@@ -45,6 +47,7 @@ class DateBrTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group slow
      * Confere se todos os segundos de um dia estão gerando o timestamp da maneira correta.
      */
     public function testContructDateBr()
@@ -71,6 +74,7 @@ class DateBrTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group slow
      * Testa o construtor do DateBr passando timestemp por 30 dias
      */
     public function testContructTimestamp()
