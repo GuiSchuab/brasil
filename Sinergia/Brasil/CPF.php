@@ -3,7 +3,7 @@
 namespace Sinergia\Brasil;
 
 /**
- * @see https://github.com/BrazilianFriendsOfSymfony/BFOSBrasilBundle/blob/master/Validator/Constraints/CpfcnpjValidator.php
+ * @see     https://github.com/BrazilianFriendsOfSymfony/BFOSBrasilBundle/blob/master/Validator/Constraints/CpfcnpjValidator.php
  * Class CPF
  * @package Sinergia\Brasil
  */
@@ -13,6 +13,7 @@ class CPF
      * Retorna apenas os dígitos do cpf
      *
      * @param $cpf
+     *
      * @return string
      */
     public static function digitos($cpf)
@@ -24,6 +25,7 @@ class CPF
      * Retorna o cpf formatado como: 999.999.999-99
      *
      * @param $cpf
+     *
      * @return string
      */
     public static function formatar($cpf)
@@ -32,7 +34,7 @@ class CPF
         if (strlen($cpf) != 11) {
             return "";
         }
-        $partes = str_split($cpf, 3);
+        $partes      = str_split($cpf, 3);
         $verificador = array_pop($partes);
 
         return implode(".", $partes) . '-' . $verificador;
@@ -42,6 +44,7 @@ class CPF
      * Retorna os últimos 2 dígitos verificadores
      *
      * @param $cpf
+     *
      * @return string
      */
     public static function verificador($cpf)
@@ -55,6 +58,7 @@ class CPF
      * Verifica se o cpf está no formato: 999.999.999-99
      *
      * @param $cpf
+     *
      * @return bool
      */
     public static function validarFormato($cpf)
@@ -66,6 +70,7 @@ class CPF
      * Verifica se o dígito verificador está correto
      *
      * @param $cpf
+     *
      * @return bool
      */
     public static function validar($cpf)
@@ -84,18 +89,22 @@ class CPF
         // Primeiro dígito
         $soma = 0;
         for ($i = 0; $i < 9; $i++) {
-            $soma += ((10-$i) * $cpf[$i]);
+            $soma += ((10 - $i) * $cpf[$i]);
         }
         $d1 = 11 - ($soma % 11);
-        if ($d1 >= 10) $d1 = 0;
+        if ($d1 >= 10) {
+            $d1 = 0;
+        }
 
         // Segundo Dígito
         $soma = 0;
         for ($i = 0; $i < 10; $i++) {
-            $soma += ((11-$i) * $cpf[$i]);
+            $soma += ((11 - $i) * $cpf[$i]);
         }
         $d2 = 11 - ($soma % 11);
-        if ($d2 >= 10) $d2 = 0;
+        if ($d2 >= 10) {
+            $d2 = 0;
+        }
         return $d1 == $cpf[9] && $d2 == $cpf[10];
     }
 
@@ -105,7 +114,7 @@ class CPF
      */
     public static function gerar()
     {
-        $cpf = array();
+        $cpf = array ();
         for ($i = 0; $i < 9; $i++) {
             $cpf[$i] = rand(0, 9);
         }
@@ -113,7 +122,7 @@ class CPF
         // Primeiro dígito
         $soma = 0;
         for ($i = 0; $i < 9; $i++) {
-            $soma += ((10-$i) * $cpf[$i]);
+            $soma += ((10 - $i) * $cpf[$i]);
         }
         $d1 = 11 - ($soma % 11);
         if ($d1 >= 10) {
@@ -124,7 +133,7 @@ class CPF
         // Segundo Dígito
         $soma = 0;
         for ($i = 0; $i < 10; $i++) {
-            $soma += ((11-$i) * $cpf[$i]);
+            $soma += ((11 - $i) * $cpf[$i]);
         }
         $d2 = 11 - ($soma % 11);
         if ($d2 >= 10) {
