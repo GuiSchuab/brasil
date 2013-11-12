@@ -133,7 +133,7 @@ class DateTimeBrTest extends PHPUnit_Framework_TestCase
     public function testCreateDate()
     {
         $this->assertEquals(Date('d/m/Y H:i:s', time()), DateTimeBr::createDate('now'));
-        $this->assertEquals('2013-11-07 00:00:00', DateTimeBr::createDate('2013-11-07')->dateTimeToString());
+        $this->assertEquals('2013-11-07 00:00:00', DateTimeBr::createDate('2013-11-07')->toDateTimeString());
     }
 
     /**
