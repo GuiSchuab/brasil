@@ -19,7 +19,7 @@
     },
     "require": {
         "nesbot/Carbon": "1.4.*",
-        "paliari/php-date-time": "0.3.1"
+        "paliari/php-date-time": "0.7.0"
     },
     "repositories": [
         {
