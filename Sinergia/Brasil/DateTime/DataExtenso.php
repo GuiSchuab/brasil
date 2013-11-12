@@ -2,46 +2,53 @@
 
 namespace Sinergia\Brasil\DateTime;
 
-use Sinergia\Brasil\Semana;
-use Sinergia\Brasil\Mes;
+use Sinergia\Brasil\Semana,
+    Sinergia\Brasil\Mes,
+    DateTime,
+    DomainException;
 
 class DataExtenso
 {
-    const SEMANA_DIA_MES_ANO = 1;
-    const DIA_MES_ANO = 2;
+    const SEMANA_DIA_MES_ANO      = 1;
+    const DIA_MES_ANO             = 2;
     const SEMANA_DIA_MES_ANO_HORA = 3;
-    const DIA_MES_ANO_HORA = 4;
+    const DIA_MES_ANO_HORA        = 4;
 
     /**
-     * Formato de data a ser passada: string
-     *      Y-m-d H:i:s
-     *      YmdHis
-     *      m/d/Y H:i:s
      * Formato do retorno:
      *  1: semana, dia de mes de ano,
      *  2: para dia de mes de ano
      *  3: para semana, dia de mes de ano as hora:minuto:segundos
      *  4: dia de mes de ano as hora:minuto:segundos
-     * @param  int              $tp
-     * @param  DateTimeBr              $dateTimeBr
+     *
+     * @param  int        $tp
+     * @param  DateTime|int $date
+     *
      * @return string
-     * @throws \DomainException
+     * @throws DomainException
      */
-    public static function formatar($tp = 1, $dateTimeBr = null)
+    public static function formatar($tp = 1, $date = null)
     {
-        if (null == $dateTimeBr) {
-            $dateTimeBr = time();
+        if (null == $date) {
+            $date = time();
+        } elseif ($date instanceof DateTime) {
+            $date = $date->getTimestamp();
         }
 
-        $sem = Semana::$NOMESF[date("N", $dateTimeBr)];
-        $mes = Mes::$NOMES[date("m", $dateTimeBr)];
+        $sem = Semana::$NOMESF[date("N", $date)];
+        $mes = Mes::$NOMES[date("m", $date)];
 
-        switch ($tp) {
-            case 1: return $sem . ", " . date("d", $dateTimeBr) . " de " . $mes . " de " . date("Y", $dateTimeBr);
-            case 2: return date("d",$dateTimeBr) . " de " . $mes . " de " . date("Y",$dateTimeBr);
-            case 3: return $sem . ", " . date("d", $dateTimeBr) . " de " . $mes . " de " . date("Y", $dateTimeBr) . " as " .  date("H:i:s", $dateTimeBr);
-            case 4: return date("d", $dateTimeBr) . " de " . $mes . " de " . date("Y", $dateTimeBr) . " as " . date("H:i:s", $dateTimeBr);
-            default: throw new \DomainException("Tipo '$tp' inváldo. Utilize as constantes disponíveis na classe.");
+        $ret = [
+            1 => $sem . ", " . date("d", $date) . " de " . $mes . " de " . date("Y", $date),
+            2 => date("d", $date) . " de " . $mes . " de " . date("Y", $date),
+            3 => $sem . ", " . date("d", $date) . " de " . $mes . " de " . date("Y", $date) . " as " . date("H:i:s", $date),
+            4 => date("d", $date) . " de " . $mes . " de " . date("Y", $date) . " as " . date("H:i:s", $date),
+        ];
+
+        if (@$ret[$tp]) {
+            return $ret[$tp];
+        } else {
+            throw new DomainException("Tipo $tp inválido!\nUtilize os tipos disponíveis nas constantes da classe");
         }
     }
 }
