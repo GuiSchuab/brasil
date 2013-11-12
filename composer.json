@@ -18,6 +18,13 @@
         }
     },
     "require": {
-        "nesbot/Carbon": "1.4.*"
-    }
+        "nesbot/Carbon": "1.4.*",
+        "paliari/php-date-time": "0.7.0"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/paliari/php-date-time.git"
+        }
+    ]
 }

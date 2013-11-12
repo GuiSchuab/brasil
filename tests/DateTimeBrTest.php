@@ -106,11 +106,14 @@ class DateTimeBrTest extends PHPUnit_Framework_TestCase
     /**
      * Verifica se a difereca de dias entre as duas datas retornadas pela funcao esta correta
      */
-    public function testIntervaloDias()
+    public function testIntervalDays()
     {
-        $this->assertEquals(30, DateTimeBr::intervaloDias(new DateTimeBr('2013-10-01'), new DateTimeBr('2013-10-31')));
-        $this->assertEquals(7, DateTimeBr::intervaloDias(new DateTimeBr('2013-09-01'), new DateTimeBr('2013-08-25')));
-        $this->assertEquals(30, DateTimeBr::intervaloDias(new DateTimeBr('2013-11-01'), new DateTimeBr('2013-12-1')));
+        $date = new DateTimeBr('2013-10-01');
+        $date1 = new DateTimeBr('2013-09-01');
+        $date2 = new DateTimeBr('2013-11-01');
+        $this->assertEquals(30, $date->intervalDays(new DateTimeBr('2013-10-31')));
+        $this->assertEquals(-7, $date1->intervalDays(new DateTimeBr('2013-08-25')));
+        $this->assertEquals(30,  $date2->intervalDays(new DateTimeBr('2013-12-1')));
     }
 
     /**
@@ -149,5 +152,14 @@ class DateTimeBrTest extends PHPUnit_Framework_TestCase
     public function testException()
     {
         DateTimeBr::createDate('nogsgsw');
+    }
+
+    public function testExtenso()
+    {
+        $date = new DateTimeBr('2013-11-08 22:15:03');
+        $this->assertEquals('sexta-feira, 08 de novembro de 2013', $date->dataExtenso(1));
+        $this->assertEquals('08 de novembro de 2013', $date->dataExtenso(2));
+        $this->assertEquals('sexta-feira, 08 de novembro de 2013 as 22:15:03', $date->dataExtenso(3));
+        $this->assertEquals('08 de novembro de 2013 as 22:15:03', $date->dataExtenso(4));
     }
 }
