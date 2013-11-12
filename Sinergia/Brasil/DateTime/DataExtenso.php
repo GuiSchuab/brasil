@@ -23,24 +23,24 @@ class DataExtenso
      *  3: para semana, dia de mes de ano as hora:minuto:segundos
      *  4: dia de mes de ano as hora:minuto:segundos
      * @param  int              $tp
-     * @param  int              $data
+     * @param  DateTimeBr              $dateTimeBr
      * @return string
      * @throws \DomainException
      */
-    public static function formatar($tp = 1, $data = 0)
+    public static function formatar($tp = 1, $dateTimeBr = null)
     {
-        if (0 == $data) {
-            $data = time();
+        if (null == $dateTimeBr) {
+            $dateTimeBr = time();
         }
 
-        $sem = Semana::$NOMESF[date("N", $data)];
-        $mes = Mes::$NOMES[date("m", $data)];
+        $sem = Semana::$NOMESF[date("N", $dateTimeBr)];
+        $mes = Mes::$NOMES[date("m", $dateTimeBr)];
 
         switch ($tp) {
-            case 1: return $sem . ", " . date("d", $data) . " de " . $mes . " de " . date("Y", $data);
-            case 2: return date("d",$data) . " de " . $mes . " de " . date("Y",$data);
-            case 3: return $sem . ", " . date("d", $data) . " de " . $mes . " de " . date("Y", $data) . " as " .  date("H:i:s", $data);
-            case 4: return date("d", $data) . " de " . $mes . " de " . date("Y", $data) . " as " . date("H:i:s", $data);
+            case 1: return $sem . ", " . date("d", $dateTimeBr) . " de " . $mes . " de " . date("Y", $dateTimeBr);
+            case 2: return date("d",$dateTimeBr) . " de " . $mes . " de " . date("Y",$dateTimeBr);
+            case 3: return $sem . ", " . date("d", $dateTimeBr) . " de " . $mes . " de " . date("Y", $dateTimeBr) . " as " .  date("H:i:s", $dateTimeBr);
+            case 4: return date("d", $dateTimeBr) . " de " . $mes . " de " . date("Y", $dateTimeBr) . " as " . date("H:i:s", $dateTimeBr);
             default: throw new \DomainException("Tipo '$tp' inváldo. Utilize as constantes disponíveis na classe.");
         }
     }
