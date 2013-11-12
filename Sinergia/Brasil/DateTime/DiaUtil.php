@@ -66,7 +66,7 @@ class DiaUtil
     /**
      * Retorna um DateBr com o dia da Paixão de Cristo do ano da data passada.
      * @param  DateTimeBr         $date
-     * @return \Carbon\Carbon DateBr
+     * @return DateBr
      */
     public static function dataPaixaoCristo($date)
     {
@@ -76,7 +76,7 @@ class DiaUtil
     /**
      * Retorna um DateBr com o dia da Quarta-feira de Cinzas do ano da data passada.
      * @param $date
-     * @return \Carbon\Carbon DateBr
+     * @return DateBr
      */
     public static function dataQuartaCinzas($date)
     {
@@ -86,7 +86,7 @@ class DiaUtil
     /**
      * Retorna um DateBr com o dia de Corpus Christi do ano da data passada.
      * @param $date
-     * @return \Carbon\Carbon DateBr
+     * @return DateBr
      */
     public static function dataCorpusChristi($date)
     {
@@ -96,7 +96,7 @@ class DiaUtil
     /**
      * Retorna um DateBr com o dia do Domingo de Ramos do ano da data passada.
      * @param $date
-     * @return \Carbon\Carbon DataBr
+     * @return DataBr
      */
     public static function dataDomingoRamos($date)
     {
@@ -106,7 +106,7 @@ class DiaUtil
     /**
      * Retorna um DateBr com o dia da terça-feira de carnaval do ano da data passada.
      * @param $date
-     * @return \Carbon\Carbon DateBr
+     * @return DateBr
      */
     public static function dataCarnaval($date)
     {
