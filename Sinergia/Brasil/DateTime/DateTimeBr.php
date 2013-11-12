@@ -3,7 +3,6 @@
 namespace Sinergia\Brasil\DateTime;
 
 use Paliari\DateTime\TDateTime;
-use Sinergia\Brasil\DateTime\DataExtenso;
 
 class DateTimeBr extends TDateTime
 {
