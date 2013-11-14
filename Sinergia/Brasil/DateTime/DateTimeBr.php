@@ -6,24 +6,23 @@ use Paliari\DateTime\TDateTime;
 
 class DateTimeBr extends TDateTime
 {
+
     /**
-     * Se o time for string ele aceita o formato DateTimeBr (d/m/Y H:i:s |d/m/YTH:i:s), não aceita formato americano (m/d/Y H:i:s)
+     * Se o time for string ele aceita o formato TDateTime (d/m/Y H:i:s |d/m/YTH:i:s), não aceita formato americano (m/d/Y H:i:s)
      *
-     * @param string|int          $time
+     * @param string|int|DateTime|object $time
      * @param DateTimeZone|string $tz
+     *
+     * @throw DomainException
      */
     public function __construct($time = null, $tz = null)
     {
-
-        if (is_numeric($time)) {
-            $time = date('Y-m-d H:i:s', $time);
-        } elseif (is_string($time)) {
+        if (is_string($time)) {
             $time = static::strBrToUs($time);
-
         }
-
-        return parent::__construct($time, $tz);
+        parent::__construct($time, $tz);
     }
+
 
     /**
      * Utilizado pelo construtor da classe
@@ -32,7 +31,7 @@ class DateTimeBr extends TDateTime
      *
      * @return int
      */
-    protected function strBrToUs($date)
+    protected static function strBrToUs($date)
     {
         $expreg = '/^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/(\d{4})(T| ){0,1}(([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])){0,1}$/';
         if (preg_match($expreg, $date, $datebit)) {
