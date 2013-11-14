@@ -122,9 +122,9 @@ class DateTimeBrTest extends PHPUnit_Framework_TestCase
     public function testCompareDate()
     {
         $date = new DateTimeBr('2013-10-01');
-        $this->assertEquals(-1, $date->compareDate(new DateTimeBr('2013-09-25')));
+        $this->assertEquals(1, $date->compareDate(new DateTimeBr('2013-09-25')));
         $this->assertEquals(0, $date->compareDate(new DateTimeBr('2013-10-01')));
-        $this->assertEquals(1, $date->compareDate(new DateTimeBr('2013-10-25')));
+        $this->assertEquals(-1, $date->compareDate(new DateTimeBr('2013-10-25')));
     }
 
     /**
