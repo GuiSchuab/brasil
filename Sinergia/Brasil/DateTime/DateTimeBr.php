@@ -6,24 +6,6 @@ use Paliari\DateTime\TDateTime;
 
 class DateTimeBr extends TDateTime
 {
-
-    /**
-     * Se o time for string ele aceita o formato TDateTime (d/m/Y H:i:s |d/m/YTH:i:s), não aceita formato americano (m/d/Y H:i:s)
-     *
-     * @param string|int|DateTime|object $time
-     * @param DateTimeZone|string $tz
-     *
-     * @throw DomainException
-     */
-    public function __construct($time = null, $tz = null)
-    {
-        if (is_string($time)) {
-            $time = static::strBrToUs($time);
-        }
-        parent::__construct($time, $tz);
-    }
-
-
     /**
      * Utilizado pelo construtor da classe
      *
@@ -33,14 +15,26 @@ class DateTimeBr extends TDateTime
      */
     protected static function strBrToUs($date)
     {
-        $expreg = '/^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/(\d{4})(T| ){0,1}(([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])){0,1}$/';
-        if (preg_match($expreg, $date, $datebit)) {
-            @list($tudo, $dia, $mes, $ano, $tz, $time, $hora, $min, $seg) = $datebit;
+        if (is_string($date)) {
+            $expreg = '/^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/(\d{4})(T| ){0,1}(([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])){0,1}$/';
+            if (preg_match($expreg, $date, $datebit)) {
+                @list($tudo, $dia, $mes, $ano, $tz, $time, $hora, $min, $seg) = $datebit;
 
-            return "$ano-$mes-$dia" . ($hora | $min | $seg ? "$hora:$min:$seg" : "");
+                return "$ano-$mes-$dia" . ($hora | $min | $seg ? "$hora:$min:$seg" : "");
+            }
         }
+        return null;
+    }
 
-        return $date;
+    /**
+     * Prepara data para validar.
+     * @param mixed $date
+     * @return null|string se for uma data valida retorna string no formato universal ou falso caso contrario.
+     */
+    protected static function prepareDate($date)
+    {
+        $dateBr = static::strBrToUs($date);
+        return $dateBr ?: parent::prepareDate($date) ;
     }
 
     /**
