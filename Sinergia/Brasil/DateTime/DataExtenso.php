@@ -38,12 +38,12 @@ class DataExtenso
         $sem = Semana::$NOMESF[date("N", $date)];
         $mes = Mes::$NOMES[date("m", $date)];
 
-        $ret = [
+        $ret = array(
             1 => $sem . ", " . date("d", $date) . " de " . $mes . " de " . date("Y", $date),
             2 => date("d", $date) . " de " . $mes . " de " . date("Y", $date),
             3 => $sem . ", " . date("d", $date) . " de " . $mes . " de " . date("Y", $date) . " as " . date("H:i:s", $date),
             4 => date("d", $date) . " de " . $mes . " de " . date("Y", $date) . " as " . date("H:i:s", $date),
-        ];
+        );
 
         if (@$ret[$tp]) {
             return $ret[$tp];
