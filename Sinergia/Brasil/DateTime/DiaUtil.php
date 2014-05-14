@@ -38,9 +38,8 @@ class DiaUtil
      */
     public static function dataPascoa($date)
     {
-        if (!$date instanceof DateTimeBr) {
-            throw new \DomainException("Tipo '$date' inváldo. Utilize DateBr.");
-        }
+        $date = static::prepareDate($date);
+
         $ano = @$date->year;
         if (static::$pascoa) {
             if ($ano == static::$pascoa->getYear()) {
@@ -145,9 +144,8 @@ class DiaUtil
      */
     protected static function diaUtil($datref, $param)
     {
-        if (!$datref instanceof DateTimeBr) {
-            throw new \DomainException("Tipo '$datref' inváldo. Utilize DateBr.");
-        }
+        $datref = static::prepareDate($datref);
+
         while (static::isWeekend($datref) || static::isFeriado($datref)) {
             $datref->addDays($param);
         }
@@ -263,5 +261,24 @@ class DiaUtil
     public static function setFeriadoHandler($feriado_handler)
     {
        static::$feriado_handler = $feriado_handler;
+    }
+
+    /**
+     * @param mixed $date
+     *
+     * @return \Paliari\DateTime\TDateTime
+     * @throws \DomainException
+     */
+    protected static function prepareDate($date)
+    {
+        if (!$date instanceof DateTimeBr) {
+            $_date = DateTimeBr::createDate($date);
+            if (!$_date) {
+                throw new \DomainException("Tipo '$date' inváldo. Utilize DateBr.");
+            }
+            $date = $_date;
+        }
+
+        return $date;
     }
 }
