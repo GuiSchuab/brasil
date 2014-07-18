@@ -9,7 +9,9 @@ class Mascaras
 {
     /**
      * Retorna o CNPJ no formato 00.000.000/0000-00
+     *
      * @param $cnpj
+     *
      * @return string
      */
     public static function formataCNPJ($cnpj)
@@ -19,7 +21,9 @@ class Mascaras
 
     /**
      * Retorna o CPF no formato 000.000.000-00
+     *
      * @param $cpf
+     *
      * @return string
      */
     public static function formataCPF($cpf)
@@ -29,7 +33,9 @@ class Mascaras
 
     /**
      * Retorna CPF ou CNPJ formatado
+     *
      * @param $str
+     *
      * @return string
      */
     public static function formataCPFCNPJ($str)
@@ -46,7 +52,9 @@ class Mascaras
 
     /**
      * Retorna COSIF em seu formato correto
-     * @param  string      $cosif (8 caracteres)
+     *
+     * @param  string $cosif (8 caracteres)
+     *
      * @return bool|string
      */
     public static function formataCOSIF($cosif)
@@ -63,7 +71,9 @@ class Mascaras
 
     /**
      * Retorna CMC no formato correto
+     *
      * @param $cmc
+     *
      * @return string
      */
     public static function formataCMC($cmc)
@@ -75,7 +85,9 @@ class Mascaras
 
     /**
      * Retorna o cep no formato correto
-     * @param  string      $cep
+     *
+     * @param  string $cep
+     *
      * @return bool|string
      */
     public static function formataCEP($cep)
@@ -91,7 +103,9 @@ class Mascaras
 
     /**
      * Retorna CodLS no formato correto
+     *
      * @param $val
+     *
      * @return string
      */
     public static function formataCodLS($val)
@@ -105,7 +119,9 @@ class Mascaras
 
     /**
      * Retorna o telefone no formato correto
+     *
      * @param $str
+     *
      * @return string
      */
     public static function formataFone($str)
@@ -127,7 +143,9 @@ class Mascaras
 
     /**
      * Máscara para formatar CodVal
+     *
      * @param $str
+     *
      * @return string
      */
     public static function formataCodVal($str)
@@ -139,18 +157,25 @@ class Mascaras
 
     /**
      * Retorna valor no formato 000.000,00
-     * @param  decimal $value
+     *
+     * @param  double $value
+     * @param  bool   $clean
+     *
      * @return string
      */
-    public static function formataMoeda($value)
+    public static function formataMoeda($value, $clean = true)
     {
-        return $value ? number_format($value, 2, ',', '.') : '';
+        $value = (double)$value;
+
+        return ($value || !$clean) ? number_format($value, 2, ',', '.') : '';
     }
 
     /**
      * Retorna valor com seu formato e a quantidade de casas decimais desejadas
-     * @param  decimal $value
-     * @param  int     $decimal (Quantidade de casas decimais a serem retornadas)
+     *
+     * @param  double $value
+     * @param  int    $decimal (Quantidade de casas decimais a serem retornadas)
+     *
      * @return string
      */
     public static function formataNumero($value, $decimal = 2)
