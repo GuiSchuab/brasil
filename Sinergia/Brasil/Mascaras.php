@@ -139,17 +139,19 @@ class Mascaras
 
     /**
      * Retorna valor no formato 000.000,00
-     * @param  decimal $value
+     * @param  double $value
+     * @param  bool $clean
      * @return string
      */
-    public static function formataMoeda($value)
+    public static function formataMoeda($value, $clean = true)
     {
-        return $value ? number_format($value, 2, ',', '.') : '';
+        $value = (double)$value;
+        return ($value || !$clean) ? number_format($value, 2, ',', '.') : '';
     }
 
     /**
      * Retorna valor com seu formato e a quantidade de casas decimais desejadas
-     * @param  decimal $value
+     * @param  double $value
      * @param  int     $decimal (Quantidade de casas decimais a serem retornadas)
      * @return string
      */
