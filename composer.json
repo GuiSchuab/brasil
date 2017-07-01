@@ -18,7 +18,7 @@
         }
     },
     "require": {
-        "paliari/php-date-time": "0.7.*"
+        "paliari/php-date-time": "0.8.*"
     },
     "repositories": [
         {
